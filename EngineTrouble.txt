@@ -1,0 +1,1339 @@
+Engine Trouble — d20 SRD Treasure Generator Discrepancy Log
+=========================================================
+
+This file documents places where the SRD text is ambiguous, incomplete, or where the
+generator makes simplifying assumptions that reduce total fidelity.
+
+1. SIZE ROLLS (Magic Item Basics)
+   - SRD: "Armor and weapons found at random have a 30% chance of being Small (01-30),
+     60% Medium (31-90), and 10% chance of being any other size (91-100)."
+   - We implement the 30/60/10 but do not enumerate all possible "other" sizes (Large,
+     Tiny, etc.) or their cost multipliers. For simplicity we report 'Other size' and
+     leave it to the DM to specify. We do not adjust price for unusual sizes.
+
+2. SPECIFIC ARMOR/SHIELD BONUSES
+   - SRD is not perfectly clear whether "specific" armors should be rolled instead
+     of bonus-only on the bonus-0 result. We do that.
+   - Not every specific armor/shield from the SRD is included here; a representative
+     set covering the most common items is provided. For full 100% accuracy one would
+     need to include every listed specific armor and shield, including variants for
+     mithral and adamantine.
+
+3. WEAPON ABILITIES
+   - Bane weapons need a creature subtype chosen. For minor items we restrict to a
+     small set (aberration/animal/magical beast/undead) per SRD minor table. For medium
+     and major, we pick more broadly.
+   - Keen is restricted to slashing/piercing. When generated on a bludgeoning weapon
+     we reroll, per SRD.
+   - We do not implement "roll again twice" on a 100 result for major weapons — instead
+     we assign a special ability (or a second one) but we only assign one additional
+     ability rather than two (noted as a simplification).
+
+4. CURSED ITEMS
+   - SRD states roughly 5% of magic items are cursed. We implement this roll. The
+     list of cursed items provided is a representative list; we do not implement the
+     full mechanics of every cursed item from SRD, just flag the item as cursed and
+     name it. Full cursed-item mechanics could be added.
+
+5. CHARGES ON WANDS / STAFFS
+   - SRD: "If such an item is found as a random part of a treasure, roll d% and
+     divide by 2 to determine the number of charges left (round down, minimum 1)."
+     We implement this for wands (1-50 charges) and for staffs (1-50 on 10 max)
+     dividing by 5 for staffs? Wait — staffs max at 10 charges when new per SRD
+     (Staff Basics: "A newly created staff has 50 charges" actually the SRD says:
+     magic items basics says "Normally, charged items have 50 charges at most" and
+     for staves: "a new staff has 50 charges" actually let me re-read... OK the
+     SRD says: "A newly created staff has 50 charges, and each use of the staff
+     depletes one or more of those charges." Staffs have 50 max charges. Good.
+     We correctly divide d%/2 (min 1) for wands and staffs.
+   - We do NOT roll for scrolls (scrolls are used once; no charges).
+   - We also do not reduce price for partially charged items.
+
+6. POTIONS LIST
+   - We included the canonical SRD potion list. Some spells listed as potion
+     eligible (bless weapon, pass without trace, remove paralysis, magic vestment,
+     flame arrow) are included as entries.
+   - Oils are treated as potions (apply externally rather than drunk).
+
+7. SCROLLS
+   - Arcane scrolls default to sorcerer/wizard spell list. Divine scrolls default
+     to cleric list. We do not distinguish between cleric/druid/paladin/ranger
+     divine scrolls.
+   - Arcane spell failure does not matter for scrolls.
+   - We do not implement scroll mishap for wrong-class casters.
+
+8. RINGS
+   - For rings with multiple sub-variants (protection +1 through +5, etc.) we
+     rolled on the minor/medium/major table and pick the exact ring based on tier
+     per SRD recommendations.
+   - Ring of counterspells: we roll a random spell to be stored.
+   - Ring of spell storing: we generate random 0-3 level spells totaling up to
+     5 spell levels for a full ring.
+
+9. RODS
+   - Metamagic rods: we only include the standard versions. Lesser/greater are
+     not separately enumerated but the names are noted as variants.
+   - Rod of wonder: we do not roll every effect at generation time (that would
+     be up to the user during play); we just identify it.
+   - Rods may cost less when found with charges expended; we use full purchase
+     price for all rods.
+
+10. STAFFS
+    - Staffs come with charges (1-50, d%/2 rounded down min 1). We do not reduce
+      price. We assume staffs use the wielder's ability score for save DCs (SRD:
+      staffs use wielder's save DCs).
+    - We list a representative set of staffs. All common core staffs are included.
+
+11. WONDROUS ITEMS
+    - We included a large selection of core wondrous items but not every last one
+      (e.g. there are hundreds of specific wondrous items). Adding more is a
+      straightforward data-entry task.
+    - Ioun stones we group together and note "roll d% for type".
+    - Manuals/Tomes: we note the +1 through +5 versions exist but only roll +1
+      for major items.
+
+12. SPELLS
+    - We include a substantial set of spells (all levels 0-9 for core use in
+      scrolls, wands, potions, etc.) but do not include every spell in the SRD
+      (there are hundreds). We do include every common spell used in standard
+      wondrous items and potions/wands/scrolls.
+    - Spell descriptions are paraphrased or condensed from SRD text. They are not
+      verbatim transcripts but preserve the mechanics faithfully.
+
+13. INTELLIGENT ITEMS
+    - The SRD states "less than 1% of magic items have intelligence". We do not
+      generate intelligent items in this version. Could be added as a subtable.
+
+14. ARTIFACTS
+    - Minor and major artifacts are not included. They are supposed to be placed
+      by the DM, not randomly rolled. This matches SRD ("Artifacts are not
+      usually generated randomly").
+
+15. EPIC LEVEL TREASURE (above 20th)
+    - We implement the epic bonus major items table but do not extend the core
+      treasure tables beyond 20th level (we use 20th level table and add bonus
+      major items, per SRD).
+
+16. MUNDANE ITEMS
+    - For the "darkwood armor" subtable, SRD says "roll d%: 01-50 buckler,
+      51-100 shield" for the darkwood armor entry. We implement this.
+    - Darkwood is a shield subtable entry (only darkwood buckler/shield) per the
+      SRD mundane table (81-90 on armor subtab is darkwood which goes to the
+      buckler/shield subtable). We implement that as darkwood buckler or darkwood
+      shield.
+    - For masterwork weapons, masterwork adds 300 gp. We add that.
+
+17. COIN DIE PARSING
+    - Coin dice strings like "1d8 × 100 sp" are parsed as (die roll) × multiplier
+      with denomination. "0" means no coins.
+
+18. MAGIC ITEM SIZES
+    - For armor and weapons we apply the 30%/60%/10% size rule (Small/Medium/Other).
+    - For wondrous items and clothing, SRD says "many magic garments are made to be
+      easily adjustable, or they adjust magically to the wearer. Size should not
+      keep characters of various kinds from using magic items." So we don't roll
+      size for wondrous items.
+
+19. MAGIC ITEM BASE ITEM (for armor/shields with enhancement bonuses)
+    - For random +1/+2/etc armor and shields, we pick the base armor/shield type
+      according to a representative set (e.g. full plate, half-plate, chain shirt,
+      etc.) based on the most common base items. We do not roll a full random base
+      item for armor from the entire mundane armor list, but pick from a pool of
+      common baselines per the SRD's implied defaults. Actually SRD says "roll for
+      the type of armor" on the magic armor table? Let's re-read the SRD: actually
+      the SRD specific armors/shields table is separate; for non-specific (bonus-only)
+      magic armor, the SRD does not explicitly say to roll a random base armor but
+      typically one chooses an appropriate armor type. We default to a random choice
+      from a selection of common armors.
+
+20. GEMS AND ART OBJECTS
+    - Gem type is picked randomly from the tier's examples. Art objects likewise.
+    - Gem base price is rolled with the listed die; we add a specific gem name.
+    - Art objects are randomly selected from examples; value rolled via tier die.
+
+21. SPELL SELECTION FOR SCROLLS/WANDS
+    - For scroll spell selection, we use the arcane/divine lists (0-9). When a
+      spell list is short for higher divine levels we fall back to cleric spells
+      which we have added for levels 5-9.
+
+22. ALIGNMENT FOR RODS/WEAPONS/RINGS
+    - Aligned items (holy/axiomatic/anarchic/unholy) we assume match a typical
+      wielder; we just note the alignment without forcing a random roll. For rings
+      of elemental command we pick a random element.
+
+23. WEAPON TYPE DETERMINATION
+    - On weapon type table (01-70 common melee, 71-80 uncommon, 81-100 common
+      ranged) we implement faithfully. Masterwork weapons add 300 gp.
+
+24. AMMUNITION
+    - Magic ammunition (arrows, bolts, etc.) is not separately rolled; we default
+      to weapon type rather than ammunition. SRD notes that sometimes weapons can
+      be ammunition. We don't differentiate.
+
+25. SPECIAL MATERIALS (other than darkwood for mundane)
+    - Adamantine, mithral, cold iron, alchemical silver, dragonhide are not
+      automatically added to random weapons/armor (we only roll darkwood from the
+      specific subtable for mundane items). Adding special material rolls would be
+      a possible expansion but is not on the core SRD treasure table flow.
+
+26. SUBTABLE FOR 1d3 MUNDANE/1d3 MINOR etc.
+    - When quantity is a die (e.g. 1d3 mundane), we roll that many separate
+      results each going through subtable generation, which is faithful to SRD.
+
+27. REROLLS
+    - For item types that don't make sense (e.g. keen on a bludgeoning weapon,
+      bane on wrong type, no inappropriate results in a category), we reroll
+      appropriately.
+
+28. MULTIPLE MAGIC ABILITIES
+    - For weapons with enhancement bonuses, the SRD says to add special abilities
+      with bonus equivalents, not exceeding +10 total. We generate up to the bonus
+      level minus 1 (i.e. a +1 weapon can have 1 bonus worth of abilities, which
+      means it could be a +1 flaming weapon). For simplicity we add exactly one
+      special ability if the bonus allows, otherwise none.
+    - Note: "price modifier" vs "+X bonus equivalent" are both tracked.
+
+29. SIZE OF WONDROUS ITEMS
+    - As per SRD, clothing/non-armor wondrous items are assumed to fit any wearer
+      unless stated otherwise.
+
+30. PRICES
+    - All prices are per the SRD. For partially charged items we report the full
+      list price. The DM can adjust.
+
+=============================================================
+Additional items:
+=============================================================
+
+31. WEAPON/ARMOR SIZE PRICING (IMPLEMENTED)
+    - Per the SRD "Armor for Unusual Creatures" and weapon size/cost rules:
+      * Armor for Small/Medium humanoids is same cost; Large ×2; Tiny ×½; etc.
+      * Weapon cost same for Small/Medium; Large ×2.
+      * Weight halved for Small, doubled for Large (armor and weapons).
+    - Implemented with full size roll (30% Small, 60% Medium, 10% other: Tiny/Large/Huge),
+      cost and weight multipliers applied to base prices. Weapon damage dice stepped
+      up/down per SRD's Larger and Smaller Weapon Damage table.
+    - Mundane armor uses the specific SRD subtable note (01-10 Small, 11-100 Medium).
+
+32. BANE WEAPON SUBTYPE (RESOLVED)
+    - A designated foe creature type (or humanoid subtype) is rolled and shown in
+      the item description. The extra +2 enhancement and +2d6 damage are noted.
+
+33. SPELL STORING WEAPON (RESOLVED)
+    - A random targeted spell of up to 3rd level is rolled and listed as currently
+      stored in the weapon when found (pre-loaded from a previous owner).
+
+34. ARMOR SPECIAL ABILITY PRICING (CORRECTED)
+    - Abilities that are listed as "+N bonus equivalent" use the bonus-difference
+      pricing formula ((enhBonus+abBonus)^2 - enhBonus^2) × 1000 (×2000 for weapons).
+    - Abilities with fixed gp prices in the SRD (Shadow, Silent Moves, Slick,
+      resistance variants, Etherealness, etc.) are priced at the fixed gp value
+      extracted from their descriptions.
+
+35. MASTERWORK COSTS (CORRECTED)
+    - Mundane masterwork weapons add 300 gp (per SRD masterwork weapon rule).
+    - Mundane masterwork shields/armor already have masterwork-inclusive prices in
+      the data (buckler 165 = 15 + 150, etc.), matching SRD.
+    - Magic weapons/armor are automatically masterwork (masterwork cost included in
+      the enhancement bonus pricing; 300 gp for weapons added explicitly to base
+      cost; armor enhancement cost already accounts for masterwork per SRD).
+
+36. SPECIFIC WEAPON SUB-ROLLS (RESOLVED)
+    - Luck blade: number of remaining wishes is rolled (1d4-1) when found and price
+      adjusted accordingly (20,000 gp per wish).
+    - Slaying arrow: a creature type is rolled for the designated bane/slaying foe.
+
+37. WEAPON "ROLL AGAIN TWICE" (RESOLVED)
+    - When the ability roll lands on 100 (minor) / 96-100 (medium) / 91-100 (major),
+      two additional special abilities are rolled and added to the weapon (per SRD
+      instruction: "Roll again twice; if you get this result again, reroll").
+    - Total effective bonus is capped at +10 per SRD rules.
+    - Duplicate abilities are rerolled.
+    - Bane types and spell storing spells are rolled for each relevant ability.
+
+#################################################################
+#                                                               #
+#   A M E N D M E N T S   (current state of the app)            #
+#                                                               #
+#   Everything above is preserved as originally written. Each   #
+#   entry below is keyed to the original item number and states #
+#   whether that item is now OBSOLETE, IMPLEMENTED, PARTIALLY   #
+#   IMPLEMENTED, or STILL AN OPEN DISCREPANCY.                  #
+#                                                               #
+#################################################################
+
+---------------------------------------------------------------
+AMENDMENT TO #1 and #18 — SIZE ROLLS / MAGIC ITEM SIZES
+Status: IMPLEMENTED, but one invented sub-roll remains.
+---------------------------------------------------------------
+- The 30%/60%/10% rule from Magic Item Basics is implemented.
+- The 91-100 "other size" result is now resolved by a further d%
+  (01-40 Tiny, 41-85 Large, 86-100 Huge).  *** NOT AN SRD TABLE ***
+  The SRD only says "any other size"; it gives no distribution.
+  This split is an engine invention and should be treated as a
+  house rule. Flagged for DM review.
+- For magic ARMOR: cost multipliers come from SRD "Armor for
+  Unusual Creatures" (humanoid column): Tiny-or-smaller x1/2 cost,
+  x1/10 weight; Small x1 / x1/2; Medium x1 / x1; Large x2 / x2;
+  Huge x4 / x5; Gargantuan x8 / x8; Colossal x16 / x12.
+- For magic WEAPONS: cost is the same for Small and Medium per SRD
+  Table: Weapons footnote ("This cost is the same for a Small or
+  Medium version of the weapon. A Large version costs twice the
+  listed price."), weight halved for Small, doubled for Large.
+  Values for Tiny/Large/Huge/Gargantuan/Colossal follow that
+  progression and are an extrapolation, not SRD figures.
+- Weapon damage dice are stepped up/down for non-Medium sizes using
+  a lookup ladder (d4->d6->d8->2d6->3d6, etc.).  *** APPROXIMATION ***
+  The SRD gives an explicit per-weapon "Larger and Smaller Weapon
+  Damage" table; our ladder does not reproduce it exactly for every
+  weapon. Flagged as a known imprecision.
+
+---------------------------------------------------------------
+AMENDMENT TO #2 and #19 — SPECIFIC ARMOR/SHIELD, BASE ARMOR TYPE
+Status: OBSOLETE / SUPERSEDED. Now correctly implemented.
+---------------------------------------------------------------
+- The approximations described above have been REPLACED by the real
+  SRD tables, transcribed from d20srd.org (Magic Armor / Magic
+  Weapons pages), now living in src/data/magicGeneration.ts:
+    * Table: Armor and Shields (enhancement / specific / "special
+      ability and roll again") for minor, medium and major.
+    * Table: Weapons (same three-way structure) for minor, medium
+      and major.
+    * Table: Random Armor Type (Padded x1, Leather x1, Studded
+      leather 03-17, Chain shirt 18-32, Hide 33-42, Scale mail 43,
+      Chainmail 44, Breastplate 45-57, Splint mail 58, Banded mail
+      59, Half-plate 60, Full plate 61-100) with masterwork-
+      inclusive costs (155/160/175/250/165/200/300/350/350/400/
+      750/1,650 gp).
+    * Table: Random Shield Type (Buckler 01-10, light wooden 11-15,
+      light steel 16-20, heavy wooden 21-30, heavy steel 31-95,
+      tower 96-100) with masterwork-inclusive costs (165/153/159/
+      157/170/180 gp).
+    * Table: Specific Armors — Mithral shirt 1,100; Dragonhide
+      plate 3,300; Elven chain 4,150; Rhino hide 5,165; Adamantine
+      breastplate 10,200; Dwarven plate 16,500; Banded mail of luck
+      18,900; Celestial armor 22,400; Plate armor of the deep
+      24,650; Breastplate of command 25,400; Mithral full plate of
+      speed 26,500; Demon armor 52,260 — each with its correct
+      minor/medium/major d% range.
+    * Table: Specific Shields — Darkwood buckler 205; Darkwood
+      shield 257; Mithral heavy shield 1,020; Caster's shield
+      3,153; Spined shield 5,580; Lion's shield 9,170; Winged
+      shield 17,257; Absorbing shield 50,170 — each with its
+      correct minor/medium/major d% range.
+    * Table: Common Melee Weapons / Uncommon Weapons / Common
+      Ranged Weapons masterwork-inclusive cost ladders.
+- The old `armorBonusTable`, `shieldBonusTable`, `meleeBonusTable`
+  and the uniform-random base-item pick are no longer used.
+- `armorShieldTypeTable` (the 80/20 armor-vs-shield roll) is now
+  DEAD CODE: the SRD's enhancement table itself decides armor vs.
+  shield ("+1 shield" vs "+1 armor"). It is retained in
+  magicItems.ts only for reference and is not consulted.
+- Corrected SRD descriptions now ship with the specific items
+  (e.g. Banded mail of luck rerolls an ATTACK roll once per week,
+  not a saving throw once per day; Winged shield is +3 and flies
+  once per day; Absorbing shield disintegrates an object once every
+  two days; Spined shield fires a +1 spine three times per day for
+  1d10 at 120 ft.; Celestial armor is 22,400 gp, not 59,500).
+- Specific items are priced by splitting the mundane base portion
+  out and scaling ONLY that by the size multiplier, because SRD
+  says "The cost of the masterwork quality and any magical
+  enhancement remains the same" for unusual creatures.
+
+---------------------------------------------------------------
+AMENDMENT TO #3 and #28 — WEAPON ABILITIES / MULTIPLE ABILITIES
+Status: IMPLEMENTED (SRD flow), with one caveat.
+---------------------------------------------------------------
+- "Special ability and roll again" is now implemented as written:
+  roll once on the special-ability table, then roll AGAIN on the
+  enhancement table to find the weapon's actual bonus.
+- Duplicate abilities are rerolled. Total effective bonus is capped
+  at +10 per SRD.
+- Bane creature types and spell-storing spells are resolved.
+- Keen (piercing/slashing only), Vorpal (slashing only) and
+  Disruption (bludgeoning only) restrictions are enforced by reroll.
+- CAVEAT: the melee/ranged special-ability d% tables in
+  magicWeapons.ts are transcribed from the SRD's MELEE table. The
+  SRD also prints a separate TABLE: RANGED WEAPON SPECIAL
+  ABILITIES, which we do NOT implement. Every rolled ranged weapon
+  therefore uses melee ability ranges. Flagged as an open gap.
+- "Roll twice" is modelled as a synthetic table entry; the SRD
+  expresses this as the "roll again" column rather than a named
+  ability.
+
+---------------------------------------------------------------
+AMENDMENT TO #4 — CURSED ITEMS
+Status: PARTIALLY IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+- The 5% roll is still applied and the item is flagged by name
+  only. Full per-cursed-item mechanics (berserking sword, armor of
+  rage, necklace of strangulation, scarab of death, etc.) are still
+  not implemented.
+
+---------------------------------------------------------------
+AMENDMENT TO #5 — CHARGES ON WANDS / STAFFS
+Status: IMPLEMENTED. The confused reasoning above is now settled.
+---------------------------------------------------------------
+- The answer to the muddled question above: the SRD states
+  "A newly created staff has 50 charges" in TWO places (Magic Item
+  Basics and the Staffs page). Staffs are 50-charge items.
+- Wands: d% / 2 (round down, minimum 1). Implemented.
+- Staffs: d% / 2 (round down, minimum 1). Implemented.
+- Rods: charge handling is now limited to the rods that actually
+  have charges in their SRD descriptions — Rod of wonder (50), Rod
+  of thunder and lightning (50) and Rod of passage (5-charge
+  effects). All other rods are treated as having no charges.
+  *** PARTIAL *** The SRD prices most rods as single-use-free items
+  with per-day powers, which is what we do.
+- STILL TRUE: no price reduction is applied for partially depleted
+  charged items; the full list price is always shown.
+
+---------------------------------------------------------------
+AMENDMENT TO #6 — POTIONS LIST
+Status: PARTIALLY IMPLEMENTED.
+---------------------------------------------------------------
+- The potion list and the "spell level x caster level x 50 gp"
+  price formula are implemented.
+- STILL OPEN:
+  * The SRD prints no "potion level by tier" table. Our roll
+    (minor: 60% 1st / 40% 2nd; medium: 25/45/30 across 1st/2nd/3rd;
+    major: 20% 2nd / 80% 3rd) is an INVENTION. Flagged.
+  * "Bless weapon", "Pass without trace", "Remove paralysis",
+    "Magic vestment" and "Flame arrow" are present as entries.
+    Several of these are OILS or non-standard potion entries; the
+    engine labels the whole group "Potion/oil" and does not
+    distinguish potions from oils in the output.
+
+---------------------------------------------------------------
+AMENDMENT TO #7 and #21 — SCROLLS
+Status: PARTIALLY IMPLEMENTED.
+---------------------------------------------------------------
+- Implemented: arcane/divine split (70/30), spell count per scroll
+  by tier, spell level per tier, price = level x CL x 25 gp.
+- STILL OPEN:
+  * The 70% arcane / 30% divine ratio is NOT an SRD figure. The SRD
+    does not give a distribution for scroll type. Flagged.
+  * The "spells per scroll" and "scroll level by tier" ladders are
+    INVENTED; the SRD's scroll tables (Table: Minor Scroll Spells,
+    etc.) were not transcribed. Flagged.
+  * Divine scrolls still always draw from the cleric list.
+  * Scroll mishap rules for unqualified casters are still not
+    implemented.
+
+---------------------------------------------------------------
+AMENDMENT TO #8 — RINGS
+Status: PARTIALLY IMPLEMENTED.
+---------------------------------------------------------------
+- Ring of counterspells: a stored spell is rolled (from the engine
+  spell list, up to 5th level). Implemented.
+- Ring of spell storing: spells totalling 3 (minor variant) or 5
+  levels are rolled. Implemented.  *** CAVEAT *** the SRD's ring of
+  spell storing holds up to 5 levels of spells of ANY level up to
+  the creator's; we cap stored spells at 3rd level. Flagged.
+- Ring of elemental command: element rolled at random. Implemented.
+- STILL OPEN: the ringRollTable d% ladders in otherMagicItems.ts are
+  INVENTED. The SRD's Table: Rings (minor/medium/major) was not
+  transcribed, so ring selection is not SRD-weighted. Flagged as
+  the largest remaining ring fidelity gap.
+
+---------------------------------------------------------------
+AMENDMENT TO #9 — RODS
+Status: PARTIALLY IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+- There is still no SRD rod d% table implemented; rods are picked
+  uniformly from our list. Flagged.
+- Metamagic rods are still only the base versions; the lesser/
+  normal/greater distinction is described in text but not rolled.
+- Rod of wonder effects are still not rolled at generation time.
+
+---------------------------------------------------------------
+AMENDMENT TO #10 — STAFFS
+Status: PARTIALLY IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+- Charges are now confirmed correct (50 max, d%/2 min 1).
+- There is still no SRD staff d% table; staffs are picked uniformly
+  from our representative list. Flagged.
+- Save DC note stands: staffs use the wielder's caster level and
+  save DCs, which the description text states.
+
+---------------------------------------------------------------
+AMENDMENT TO #11 — WONDROUS ITEMS
+Status: PARTIALLY IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+- There is still no SRD wondrous-item d% table. Selection is by
+  price bucket (minor < 10,000; medium 5,000-40,000; major
+  >= 20,000), which is an INVENTION that also makes the buckets
+  overlap. Flagged.
+- The erroneous "Bracers of defense" entry (not an SRD item) has
+  been REMOVED from the data.
+- Ioun stones still collapse to a single entry with a "roll d% for
+  type" note; individual stone types and prices are not rolled.
+- Manuals/Tomes still only ever produce the +1 version.
+
+---------------------------------------------------------------
+AMENDMENT TO #12 — SPELLS
+Status: PARTIALLY IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+- Spell coverage is still a curated subset, not the full SRD list.
+- Descriptions are still paraphrased/condensed, not verbatim.
+- Scrolls and wands can therefore roll spell names that have no
+  matching description in our data; those fall back to a
+  "(spell description in SRD)" placeholder.
+
+---------------------------------------------------------------
+AMENDMENT TO #13 and #14 — INTELLIGENT ITEMS / ARTIFACTS
+Status: STILL NOT IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+
+---------------------------------------------------------------
+AMENDMENT TO #15 — EPIC LEVEL TREASURE
+Status: IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+- Levels 21-30 still use the 20th-level tables plus the SRD epic
+  bonus-major-item counts (1,2,4,6,9,12,17,23,31,42).
+- NOTE: those bonus items are rolled as ordinary MAJOR items. The
+  SRD's actual epic treasure rules live in the Epic Level Handbook,
+  not the core SRD treasure tables, so this is a pragmatic
+  interpretation. Flagged.
+
+---------------------------------------------------------------
+AMENDMENT TO #16 — MUNDANE ITEMS
+Status: IMPLEMENTED (unchanged in substance).
+---------------------------------------------------------------
+- Darkwood and masterwork-shield subtables are implemented.
+- Mundane masterwork weapons still add 300 gp.
+- Mundane ARMOR size uses the SRD's explicit note (01-10 Small,
+  11-100 Medium). Mundane WEAPONS still use the 30/70 Small/Medium
+  split, which is NOT an SRD note (the SRD's mundane weapon table
+  has no size roll). Flagged.
+
+---------------------------------------------------------------
+AMENDMENT TO #17 — COIN DIE PARSING
+Status: IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+
+---------------------------------------------------------------
+AMENDMENT TO #20 — GEMS AND ART OBJECTS
+Status: IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+- Full SRD gem table (6 tiers) and art-object table (12 tiers) are
+  implemented with value dice and example lists; a concrete example
+  name is always resolved for the user.
+
+---------------------------------------------------------------
+AMENDMENT TO #22 — ALIGNMENT
+Status: PARTIALLY IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+
+---------------------------------------------------------------
+AMENDMENT TO #23 — WEAPON TYPE DETERMINATION
+Status: IMPLEMENTED, with a caveat.
+---------------------------------------------------------------
+- The 01-70 / 71-80 / 81-100 weapon-type table is implemented.
+- CAVEAT: the specific weapon is then picked UNIFORMLY from our
+  lists. The SRD's Table: Common Melee Weapons / Uncommon Weapons /
+  Common Ranged Weapons are weighted d% tables (e.g. longsword
+  29-41, greataxe 05-14, full plate 61-100 for armor). The weighted
+  ladders now exist in magicGeneration.ts (commonMeleeMW,
+  uncommonMW, commonRangedMW, randomArmorType, randomShieldType)
+  but the MAGIC weapon path still uses the uniform pick from
+  weapons.ts. Flagged as an open gap.
+
+---------------------------------------------------------------
+AMENDMENT TO #24 — AMMUNITION
+Status: STILL NOT IMPLEMENTED.
+---------------------------------------------------------------
+- Additionally: the SRD's weapon base-price column is quoted per 50
+  units of ammunition, and the specific-weapon table includes
+  ammunition (Screaming bolt, Sleep arrow, Slaying arrow). Those
+  are generated as single "items" with a note that SRD prices are
+  per 50. Quantity rolls for ammunition are NOT performed.
+
+---------------------------------------------------------------
+AMENDMENT TO #25 — SPECIAL MATERIALS
+Status: NOW IMPLEMENTED (previously listed as not implemented).
+---------------------------------------------------------------
+- The SRD roll "d%: 01-95 standard sort, 96-100 special material"
+  is now applied to every random magic armor, shield and weapon.
+- On a 96-100 result the material is chosen from: Adamantine (96),
+  Mithral (97), Alchemical silver (98), Cold iron (99), Dragonhide
+  (100).  *** NOT AN SRD TABLE *** — the SRD lists which materials
+  are legal but gives no distribution among them. Flagged.
+- Material gp additions are APPROXIMATIONS drawn from the SRD's
+  specialMaterials.htm examples (adamantine armor 5,000/10,000/
+  15,000 by weight class; adamantine weapon +3,000; mithral armor
+  1,000/4,000/9,000; mithral weapon +500; alchemical silver +20 or
+  10%; cold iron 50%; dragonhide 2x). These are close to but not a
+  verbatim transcription of the SRD cost rules. Flagged.
+
+---------------------------------------------------------------
+AMENDMENT TO #26, #27, #29, #30 — SUBTABLES, REROLLS, WONDROUS
+SIZE, PRICES
+Status: IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+- Quantities like 1d3 mundane still generate that many independent
+  fully-resolved items, each with its own dice log.
+- Restriction rerolls (keen/vorpal/disruption) still implemented.
+- Wondrous items still get no size roll.
+- Partially charged items still report the full list price.
+
+---------------------------------------------------------------
+AMENDMENT TO #31 — WEAPON/ARMOR SIZE PRICING
+Status: IMPLEMENTED (as described above in Amendment #1).
+---------------------------------------------------------------
+
+---------------------------------------------------------------
+AMENDMENT TO #32 — BANE WEAPON SUBTYPE
+Status: IMPLEMENTED, with a caveat.
+---------------------------------------------------------------
+- A designated foe is rolled and shown.  *** CAVEAT *** we use one
+  flat list of creature types for all tiers. The SRD's bane column
+  says only "Designated foe" with no distribution table, so this is
+  acceptable, but the SRD's slaying-arrow table (which DOES have a
+  d% distribution) is used only for slaying arrows, not for bane.
+
+---------------------------------------------------------------
+AMENDMENT TO #33 — SPELL STORING WEAPON
+Status: IMPLEMENTED (unchanged).
+---------------------------------------------------------------
+
+---------------------------------------------------------------
+AMENDMENT TO #34 — ARMOR SPECIAL ABILITY PRICING
+Status: IMPLEMENTED.
+---------------------------------------------------------------
+- Abilities whose SRD text ends "Price +N bonus" are priced by the
+  bonus-difference formula ((enh+ab)^2 - enh^2) x 1,000 for armor
+  and shields, x 2,000 for weapons.
+- Abilities whose SRD text ends "Price +X,XXX gp" are priced at
+  that fixed figure, parsed out of the description text.
+- Enhancement bonuses rolled directly from Table: Armor and Shields
+  / Table: Weapons now use the SRD's printed Base Price column
+  (1,000 / 4,000 / 9,000 / 16,000 / 25,000 for armor and shields;
+  2,000 / 8,000 / 18,000 / 32,000 / 50,000 for weapons) instead of
+  a recomputed square.
+
+---------------------------------------------------------------
+AMENDMENT TO #35 — MASTERWORK COSTS
+Status: IMPLEMENTED (corrected approach).
+---------------------------------------------------------------
+- Magic armor/shields now use the SRD's masterwork-INCLUSIVE base
+  figures from Table: Random Armor Type and Table: Random Shield
+  Type, so no separate +150 gp is added.
+- Magic weapons add the 300 gp masterwork cost to the mundane base
+  cost, matching the SRD's "+315 gp longsword" style figures.
+  Double weapons are not specially handled (the SRD's +600 gp rule
+  for double weapons is not applied). Flagged.
+- Mundane masterwork armor/shield prices in mundaneItems.ts remain
+  masterwork-inclusive.
+
+---------------------------------------------------------------
+AMENDMENT TO #36 — SPECIFIC WEAPON SUB-ROLLS
+Status: IMPLEMENTED, now with the real SRD table.
+---------------------------------------------------------------
+- Slaying arrow: the designated type/subtype is rolled on the SRD's
+  own d% table (Aberrations 01-05 ... Vermin 99-100), transcribed
+  into the engine. Additionally a 50% roll decides whether the item
+  is a greater slaying arrow (DC 23, 4,057 gp).  *** NOTE *** the
+  SRD's specific-weapon table lists "Slaying arrow" and does not
+  say how to choose between normal and greater, so this 50/50 is an
+  engine invention. Flagged.
+- Luck blade: wishes held rolled 1d4 and priced at 22,060 gp plus
+  20,000 gp per wish.  *** NOTE *** the SRD says the blade holds
+  1d4 wishes at creation and its price is 22,060 gp PLUS 20,000 gp
+  per wish, so our roll is faithful.
+
+---------------------------------------------------------------
+AMENDMENT TO #37 — WEAPON "ROLL AGAIN TWICE"
+Status: IMPLEMENTED (see Amendment #3).
+---------------------------------------------------------------
+
+---------------------------------------------------------------
+NEW ITEMS (not previously listed)
+---------------------------------------------------------------
+
+38. MAGIC ARMOR / SHIELD WEIGHT
+    - The generator does not track weight for magic armor and
+      shields. A 10 lb placeholder x size multiplier was used
+      during development and has been removed from the output.
+      Weights are still not reported for magic armor/shields.
+      Flagged as a gap.
+
+39. DOUBLE WEAPONS
+    - The SRD rules for double weapons (two separate enhancement
+      bonuses, second head same bonus 01-50 / one less 51-100 on
+      d%, doubled masterwork cost, doubled bonus cost) are NOT
+      implemented. Quarterstaff, two-bladed sword, dwarven
+      urgrosh, gnome hooked hammer and orc double axe are treated
+      as single-headed. Flagged.
+
+40. CASTER'S SHIELD
+    - The SRD's 50% chance of a scribed medium scroll spell, the
+      01-80 divine / 81-100 arcane roll, the spell level and the
+      half-price scroll value are all rolled and reported.
+      IMPLEMENTED.
+
+41. WEAPON BONUS TABLE vs. SPECIAL ABILITY INTERACTION
+    - When "special ability and roll again" is rolled, one ability
+      is taken first and the re-roll then determines the base
+      enhancement bonus. If the re-roll lands on another "special
+      ability and roll again", the engine settles on +1 base with
+      the abilities already rolled (a suit/shield with a special
+      ability must have at least +1 enhancement bonus per SRD).
+      This is a deterministic fallback for a case the SRD leaves
+      to repeated rolls. Flagged.
+
+42. NON-SRD INVENTED TABLES — SUMMARY
+    For easy review, the tables below exist in the engine but have
+    NO SRD counterpart. Everything else in magicGeneration.ts is
+    transcribed from the SRD.
+      * Other-size sub-split (Tiny/Large/Huge)        [#1]
+      * Potion level by tier                          [#6]
+      * Scroll arcane/divine 70/30 split              [#7]
+      * Scroll spells-per-scroll and level ladders    [#7]
+      * Ring selection d% tables                      [#8]
+      * Wondrous item price buckets                   [#11]
+      * Mundane weapon 30/70 size split               [#16]
+      * Special material distribution 96-100          [#25]
+      * Greater-slaying-arrow 50% roll                [#36]
+      * Bane creature-type list                       [#32]
+      * "Roll twice" synthetic ability entry          [#3]
+      * Special-material gp cost figures              [#25]
+
+43. DEAD CODE
+      * armorShieldTypeTable (magicItems.ts) - superseded
+      * armorBonusTable / shieldBonusTable (magicItems.ts) - superseded
+      * meleeBonusTable (magicWeapons.ts) - superseded
+      * specificArmors / specificShields (magicItems.ts) - superseded
+      * specificWeapons (magicWeapons.ts) - superseded
+      * potionEligibleSpells (spells.ts) - never consulted
+      Superseded data is retained intentionally so the older
+      approximations remain auditable, but none of it is reachable
+      from the generator.
+
+44. PRICING VERIFICATION STATUS
+      Coins, gems, art objects, mundane goods, potions (level x CL
+      x 50), scrolls (level x CL x 25), wands (level x CL x 750),
+      magic armor/shields (SRD base-price column + SRD ability
+      prices + SRD MW-inclusive base) and magic weapons (base +
+      300 + SRD base-price column + SRD ability prices) all follow
+      SRD figures. Rings, rods, staffs, staves' charge depletion
+      and wondrous items use the listed SRD market prices without
+      adjustment.
+
+=================================================================
+END OF AMENDMENTS
+=================================================================
+
+
+#################################################################
+#                                                               #
+#   S E C O N D   F I D E L I T Y   A U D I T                   #
+#   (verified against d20srd.org item pages, post-Amendments)   #
+#                                                               #
+#   This pass fetched and read the live SRD pages for Magic      #
+#   Armor, Magic Weapons, Rings and Rods and compared them line  #
+#   by line against the engine. Corrections were made in code    #
+#   and are recorded below. Items marked UNVERIFIED were NOT     #
+#   checked against the SRD in this pass and must not be         #
+#   assumed accurate.                                            #
+#                                                               #
+#################################################################
+
+---------------------------------------------------------------
+AMENDMENT TO AMENDMENT #8 — RINGS  *** SERIOUSLY WRONG, NOW FIXED ***
+---------------------------------------------------------------
+Re-reading the live SRD page showed the ring data was substantially
+inaccurate. The following were WRONG and have been CORRECTED:
+
+  WRONG -> CORRECT
+  Ring of friend shield          30,000 gp  -> 50,000 gp (for a PAIR)
+  Ring of djinni calling         43,500 gp  -> 125,000 gp
+  Ring of shooting stars         22,000 gp  -> 50,000 gp
+  Ring of elemental command      200,000 gp -> 200,000 gp (all four; the
+                                            old text said "Varies")
+  Ring of animal friendship      10,800 gp  -> 10,800 gp (confirmed)
+  Ring of counterspells          "up to 5th level" -> 1st THROUGH 6TH level
+
+  NON-SRD ITEMS REMOVED (were invented):
+    * Ring of water breathing   (no such standard ring exists; water
+                                 breathing is a power of the ring of
+                                 elemental command (water))
+
+  MISSING ITEMS ADDED:
+    * Climbing, improved            10,000 gp
+    * Jumping, improved             10,000 gp
+    * Swimming, improved            10,000 gp
+    * Meld into stone               27,000 gp
+    * Energy resistance, greater    44,000 gp
+    * Wizardry II                   40,000 gp
+    * Wizardry III                  70,000 gp
+    * Wizardry IV                  100,000 gp
+    * Spell storing, major         200,000 gp
+    * Three wishes                  97,950 gp
+
+  IMPLEMENTED: the real SRD TABLE: RINGS now drives selection
+  (src/data/ringsRodsSRD.ts). This REPLACES the invented
+  ringRollTable d% ladders flagged in the previous amendment. The
+  table is a single table with three d% columns (minor / medium /
+  major); the column matching the item's tier is rolled.
+
+  NEW SUB-ROLLS RESOLVED (all SRD-mandated, previously missing):
+    * Three wishes: "roll 1d3 to determine the remaining number of
+      rubies."
+    * Spell storing (minor 3 / normal 5 / major 10 levels): "treat it
+      as a scroll to determine what spells are stored in it. If you
+      roll a spell that would put the ring over the ...-level limit,
+      ignore that roll; the ring has no more spells in it." The
+      engine now rolls spells and ignores over-budget results rather
+      than filling to the cap.
+    * Energy resistance: the energy type is rolled (SRD: "determine
+      randomly if found as part of a treasure hoard").
+    * Ring of the ram: 50 charges; found with d%/2 charges (min 1).
+  *** NOTE *** the d%/2 rule is from Magic Item Basics ("charged
+  items have 50 charges at most... roll d% and divide by 2"). The
+  Rings page itself does not restate it, so applying it to the ram
+  is an interpretation, though a standard one.
+
+  IMPLEMENTED: the SRD "Special Qualities" roll for rings — d%:
+  01 intelligent, 02-31 something provides a clue to its function,
+  32-100 no special qualities. This roll is now made and reported
+  for every ring. NOTE: intelligent rings cannot have charges, so
+  an "intelligent" result on a ram ring is contradictory; the engine
+  reports the conflict rather than silently resolving it.
+
+---------------------------------------------------------------
+AMENDMENT TO AMENDMENT #9 — RODS  *** SERIOUSLY WRONG, NOW FIXED ***
+---------------------------------------------------------------
+Re-reading the live SRD page showed the rod data was substantially
+inaccurate. The following were WRONG and have been CORRECTED:
+
+  WRONG -> CORRECT
+  Rod of alertness              12,500 gp  -> 85,000 gp
+  Rod of flailing               25,000 gp  -> 50,000 gp
+  Rod of rulership              70,000 gp  -> 60,000 gp
+  Rod of thunder and lightning  27,000 gp  -> 33,000 gp
+  Rod of absorption             50,000 gp  -> 50,000 gp (confirmed;
+                                spelling corrected from "absorbtion")
+
+  NON-SRD RODS REMOVED (were invented):
+    * Rod of passage
+    * Rod of resurgence
+
+  MISSING RODS ADDED:
+    * Immovable rod                     5,000 gp
+    * Metamagic Enlarge, lesser         3,000 gp
+    * Metamagic Extend, lesser          3,000 gp
+    * Metamagic Silent, lesser          3,000 gp
+    * Metamagic Empower, lesser         9,000 gp
+    * Metal and mineral detection      10,500 gp
+    * Metamagic Maximize, lesser       14,000 gp
+    * Python                           13,000 gp
+    * Flame extinguishing              15,000 gp
+    * Viper                            19,000 gp
+    * Enemy detection                  23,500 gp
+    * Metamagic Enlarge, greater       24,500 gp
+    * Metamagic Extend, greater        24,500 gp
+    * Metamagic Silent, greater        24,500 gp
+    * Metamagic Quicken, lesser        35,000 gp
+    * Negation                         37,000 gp
+    * Metamagic Empower, greater       73,000 gp
+    * Metamagic Quicken               75,500 gp
+    * Metamagic Maximize, greater     121,500 gp
+    * Metamagic Quicken, greater      170,000 gp
+
+  IMPLEMENTED: the real SRD TABLE: RODS now drives selection,
+  replacing the uniform pick flagged earlier. NOTE: the SRD table
+  has only MEDIUM and MAJOR columns. Rods do not appear at minor
+  tier; when a minor-tier roll selects rods, the engine rolls the
+  MEDIUM column and labels the result accordingly.
+
+  CORRECTED CHARGE HANDLING (the earlier blanket d%/2 was wrong):
+    * Most rods have NO charges — the SRD opens with "Rods are
+      scepterlike devices that have unique magical powers and do
+      not usually have charges." The old code gave every "thunder,
+      wonder or passage" rod charges; that is wrong on two counts
+      (wonder has none, passage does not exist).
+    * Rod of absorption: SRD-specific rule — "roll d% and divide by
+      2" for remaining absorption potential (max 50), then roll d%
+      AGAIN: on 71-100, half the levels already absorbed are still
+      stored within. Both rolls are now made and reported.
+    * Rod of flame extinguishing: "has 10 charges when found";
+      charges renew daily. Implemented.
+    * Rod of wonder: no charges. The d% effect table is transcribed
+      into the description for the user to roll during play; the
+      engine still does not pre-roll a wonder effect. UNCHANGED GAP.
+    * Rod of splendor: garb value roll (1d4+6 x 1,000 gp) is now
+      resolved at generation time.
+
+  IMPLEMENTED: the SRD "Special Qualities" roll for rods (01
+  intelligent, 02-31 clue, 32-100 none). Reported for every rod.
+
+  CORRECTED DESCRIPTIONS (were paraphrased/inaccurate):
+    * Rod of rulership now rules 300 HD within 120 ft for 500 total
+      minutes (was "200 HD within 300 ft for 10 rounds").
+    * Rod of security now holds 199 other creatures for up to 200
+      days divided by creature count, once per week (was "150 people,
+      200 days total, 1 week wait" — close but imprecise).
+    * Rod of withering now deals 1d4 Str + 1d4 Con, drain on a crit,
+      DC 17 Fort (was 1d4 Con/Str/Dex with DC 20 — wrong).
+    * Rod of thunder and lightning powers rewritten from the SRD.
+    * Rod of alertness powers rewritten from the SRD.
+    * Metamagic rods now correctly state the lesser (3rd) / normal
+      (6th) / greater (9th) spell-level limits, which the old text
+      got backwards.
+
+---------------------------------------------------------------
+STILL UNVERIFIED IN THIS PASS — treat as NOT CHECKED
+---------------------------------------------------------------
+The following pages were NOT re-fetched in this audit, so their
+earlier caveats stand and their data must not be assumed accurate:
+
+  * STAFFS (staffs.htm)   — table and descriptions UNVERIFIED.
+  * WONDROUS ITEMS        — price buckets remain INVENTED and the
+                            remaining item descriptions UNVERIFIED.
+  * SCROLLS               — the arcane/divine split and the
+                            spells-per-scroll and level ladders remain
+                            INVENTED; the SRD's Table: Minor/Medium/
+                            Major Scroll Spells was never transcribed.
+  * POTIONS AND OILS      — the potion level-by-tier roll remains
+                            INVENTED; the SRD's potion spell tables
+                            were never transcribed.
+  * WANDS                 — the wand spell tables were never checked
+                            against the SRD's Table: Minor/Medium/
+                            Major Wand Spells (split arcane/divine).
+                            UNVERIFIED.
+  * SPELLS                — coverage is a curated subset;
+                            descriptions paraphrased. UNVERIFIED in
+                            bulk.
+  * CURSED ITEMS          — name list only; mechanics not checked.
+  * WEAPONS / ARMOR DATA  — the base weapon and armour stat lines
+                            (damage, crit, weight, AC, max Dex, check
+                            penalty, ASF) were checked against
+                            equipment pages earlier and the missing
+                            Hide / Scale mail / Splint mail added, but
+                            the FULL weapons table (including every
+                            simple/martial/exotic entry) has not been
+                            transcribed; the "common melee / uncommon /
+                            common ranged" lists are subsets.
+
+---------------------------------------------------------------
+NEW ITEMS FOUND IN THIS PASS
+---------------------------------------------------------------
+
+45. ROD TIER MAPPING
+    - The SRD rod table has no minor column. A minor-tier rod roll
+      falls through to the medium column. This is a pragmatic
+      choice; the SRD simply implies rods are never minor items
+      (consistent with Table: Random Magic Item Generation, which
+      gives rods no minor range at all). The engine's behaviour is
+      therefore faithful, but the label is adjusted to "medium".
+
+46. INTELLIGENT-RING / CHARGED-RING CONTRADICTION
+    - Rings and rods with charges "can never be intelligent". If the
+      special-qualities roll returns "intelligent" for a ring of the
+      ram (charged) the engine reports both facts and leaves the
+      contradiction to the DM rather than rerolling. Flagged as a
+      deliberate choice.
+
+47. RING OF WIZARDRY NAMING
+    - The SRD calls them "ring of wizardry I/II/III/IV". The engine
+      uses "Wizardry I" etc. as the table key and prints them that
+      way. Cosmetic, not a rules issue.
+
+48. ROD OF WONDER EFFECT TABLE
+    - The full d% wondrous-effect table from the SRD is now included
+      in the item's description text so the user can roll it during
+      play. The engine still does not roll a wonder effect at
+      generation time (no single "found" state exists for a rod of
+      wonder). Unchanged, but now usable in play.
+
+49. VERIFIED-CORRECT AS OF THIS PASS
+    The following are confirmed accurate against the live SRD:
+      * Table: Rings (all 41 entries, all three d% columns, all
+        market prices)
+      * Table: Rods (all 35 entries, both d% columns, all market
+        prices)
+      * Ring and rod Special Qualities rolls
+      * Rod of absorption and rod of flame extinguishing charge
+        rules
+      * Three wishes ruby roll, spell-storing scroll-equivalent
+        roll, energy-resistance type roll
+      * Table: Armor and Shields, Table: Weapons, Table: Random
+        Armor Type, Table: Random Shield Type, Table: Specific
+        Armors, Table: Specific Shields, Table: Weapon Type
+        Determination, the Slaying Arrow designated-type table
+      * Table: Gems, Table: Art Objects, Table: Mundane Items
+        (with darkwood and masterwork-shield subtables)
+      * Table: Treasure (coins / goods / items, CR 1-20) and the
+        epic bonus-major-item counts
+
+=================================================================
+END OF SECOND AUDIT
+=================================================================
+
+
+#################################################################
+#                                                               #
+#   T H I R D   P A S S   —   F U L L   T A B L E   P A S S     #
+#   (Potions/Oils, Staffs, Scrolls, Wondrous Items, Cursed Items)#
+#                                                               #
+#   All five requested pages were fetched and transcribed. The  #
+#   notes below record exactly what is now complete and exactly  #
+#   what is still not, so nothing can be mistaken for done.      #
+#                                                               #
+#################################################################
+
+---------------------------------------------------------------
+POTIONS AND OILS  *** COMPLETE — replaced an invented table ***
+---------------------------------------------------------------
+The previous "potion level by tier" roll flagged as INVENTED has
+been DELETED. Selection is now driven entirely by the real SRD
+TABLE: POTIONS AND OILS, transcribed with all three d% columns:
+
+  * MINOR column  : 100 rows, 01-100 (cure light wounds 01-10 ...
+                    undetectable alignment 100)
+  * MEDIUM column : 100 rows (bless weapon 01-02 ... water walk 100)
+  * MAJOR column  : 100 rows (blur 01-02 ... magic vestment 100)
+
+Every row carries its own market price (50 / 100 / 250 / 300 / 600 /
+700 / 750 / 900 / 1,050 / 1,100 / 1,200 / 1,500 / 1,800 / 2,400 /
+3,000 gp), so the "level x CL x 50" formula is no longer used at all
+— the printed price is used directly. That is more faithful, since
+the SRD's prices for the same spell at different bonuses differ in
+ways the formula cannot express (e.g. shield of faith +2 is 50 gp
+but +3 is 300 gp; barkskin +2 is 300 gp but +3 is 600 gp).
+
+Potion vs. OIL is now tracked per row and shown in the item name
+("Oil of magic weapon", "Potion of cure light wounds"). There are 8
+oils in the minor column (magic stone, magic weapon, shillelagh,
+bless weapon, darkness, plus greater magic weapon / magic vestment /
+keen edge at higher tiers) and the rest are potions. Invisibility
+and levitate are explicitly "potion or oil" in the SRD and are shown
+as potions.
+
+SUB-ROLLS RESOLVED:
+  * Protection from (alignment) and Magic circle against (alignment)
+    — the alignment (chaos / evil / good / law) is rolled.
+  * Resist energy (type) — the energy type is rolled (acid, cold,
+    electricity, fire, sonic).
+  * Protection from energy (type) — the energy type is rolled.
+  * Parameterised bonuses (+2/+3/+4/+5 shield of faith and barkskin,
+    10/magic and 15/magic protection from arrows, (type) 10/20/30
+    resist energy, +1..+5 greater magic fang / greater magic weapon /
+    magic vestment) are carried through to the item name from the
+    table row.
+
+DESCRIPIONS: every potion now prints the spell's caster level (the
+minimum needed to cast it) and pulls a description from the engine's
+spell list. Because the SRD table references ~65 distinct spells and
+the engine's curated spell list does not contain all of them, a
+further set of ~19 short descriptions was written for the missing
+entries (bless weapon, hide from undead, magic stone, pass without
+trace, sanctuary, reduce person, misdirection, undetectable
+alignment, daylight, flame arrow, keen edge, magic vestment, good
+hope, rage, remove blindness/deafness, water walk, magic fang,
+greater magic fang, greater magic weapon, shillelagh). These are
+ACCURATE SUMMARIES, not verbatim SRD text. Any spell still missing
+prints an explicit placeholder naming the spell rather than
+silently showing nothing. Flagged as partial.
+
+Also now printed with every potion: the activation rules (standard
+action, provokes attacks of opportunity, drinker is both target and
+caster, oils target an object, incorporeal creatures cannot use
+them) and the vial statistics (1 oz, AC 13, 1 hp, hardness 1, break
+DC 12).
+
+---------------------------------------------------------------
+SCROLLS  *** META-TABLES COMPLETE — SPELL TABLES STILL NOT ***
+---------------------------------------------------------------
+IMPLEMENTED — the three SRD meta-tables, which the previous version
+approximated with invented ladders (the invented 70/30 split, the
+invented "spells per scroll" ladder and the invented "level by tier"
+ladder are all DELETED):
+
+  * TABLE: SCROLL TYPES — 01-70 Arcane, 71-100 Divine. (The 70/30
+    figure was right by accident; it is now sourced, not guessed.)
+  * TABLE: NUMBER OF SPELLS ON SCROLL — minor 1d3, medium 1d4,
+    major 1d6. Rolled and reported.
+  * TABLE: SCROLL SPELL LEVELS — the real per-tier ladder, which is
+    quite different from what was there before:
+        minor:  01-05 = 0th (CL 1) | 06-50 = 1st (CL 1)
+                51-95 = 2nd (CL 3) | 96-100 = 3rd (CL 5)
+        medium: 01-05 = 2nd (CL 3) | 06-65 = 3rd (CL 5)
+                66-95 = 4th (CL 7) | 96-100 = 5th (CL 9)
+        major:  01-05 = 4th (CL 7) | 06-50 = 5th (CL 9)
+                51-70 = 6th (CL 11)| 71-85 = 7th (CL 13)
+                86-95 = 8th (CL 15)| 96-100 = 9th (CL 17)
+    The caster level column is now used directly, replacing the
+    "level x 2 - 1" recomputation.
+  * IMPORTANT CORRECTION: the SRD's Scroll Spell Levels table sets
+    ONE level for the whole scroll. The previous code rolled a level
+    PER SPELL. Every spell on a generated scroll now shares the
+    single rolled level and caster level, which is what the SRD
+    means.
+  * PRICE now sums the per-spell figure: 12 gp 5 sp for 0th-level
+    spells (the SRD's printed "12 gp 5 sp", not the 12.5 gp
+    rounding previously used) and level x CL x 25 gp otherwise,
+    multiplied by the number of spells on the scroll.
+
+  ALSO IMPLEMENTED, previously absent:
+    * The full activation sequence (decipher with read magic or
+      Spellcraft DC 20 + spell level; deciphering does NOT activate
+      the scroll; the type/class-list/ability-score requirements; the
+      automatic success if the user's CL >= the scroll's CL; the
+      caster level check DC = scroll's CL + 1; the DC 5 Wisdom check
+      to avoid a mishap; natural 1 always fails).
+    * All seven SRD scroll mishaps, printed on the item so they can
+      be rolled in play.
+    * The class-default rule (spells that differ by class are listed
+      at the sorcerer/wizard level for arcane and the cleric level
+      for divine).
+    * Physical description (8 1/2 x 11 in per spell, AC 9, 1 hp,
+      hardness 0, break DC 8, rod reinforcement at three or more
+      spells, scroll case).
+
+STILL NOT IMPLEMENTED — the largest remaining gap in this category:
+  * TABLE: ARCANE SPELL SCROLLS (0-level through 9th-level, each a
+    weighted d% table with its own market prices) — NOT transcribed.
+  * TABLE: DIVINE SPELL SCROLLS (0-level through 9th-level) — NOT
+    transcribed.
+  Scroll spells are therefore still drawn from the engine's curated
+  arcaneSpellList / divineSpellList, which are UNWEIGHTED and do not
+  match the SRD's per-level distributions, and the SRD's per-spell
+  market prices (which vary widely — e.g. gate is 8,825 gp and
+  miracle 28,825 gp at 9th level) are NOT used; the flat level x CL
+  x 25 formula is applied instead. Flagged as the top remaining
+  scroll fidelity gap.
+
+---------------------------------------------------------------
+STAFFS  *** COMPLETE — replaces a partly invented set ***
+---------------------------------------------------------------
+IMPLEMENTED — the real SRD TABLE: STAFFS, replacing the previous
+uniform pick from a hand-written list:
+
+  * MEDIUM column (01-100): Charming 01-15, Fire 16-30, Swarming
+    insects 31-40, Healing 41-60, Size alteration 61-75,
+    Illumination 76-90, Frost 91-95, Defense 96-100.
+  * MAJOR column (01-100): the same eight, then Abjuration 39-43,
+    Conjuration 44-48, Enchantment 49-53, Evocation 54-58, Illusion
+    59-63, Necromancy 64-68, Transmutation 69-73, Divination 74-77,
+    Earth and stone 78-82, Woodlands 83-87, Life 88-92, Passage
+    93-97, Power 98-100.
+
+AS THE USER NOTED: the table has ONLY Medium and Major columns. The
+previous code accepted a minor tier and rolled the whole 22-item
+list. Now a minor-tier staff roll falls through to the MEDIUM column
+and is labelled accordingly, which matches Table: Random Magic Item
+Generation (staffs have no minor range at all).
+
+CORRECTED PRICES (several were substantially wrong):
+  * Staff of charming        17,500 -> 16,500 gp
+  * Staff of fire            28,500 -> 28,500 gp (confirmed)
+  * Staff of swarming insects 30,000 -> 24,750 gp
+  * Staff of healing         41,250 -> 27,750 gp
+  * Staff of size alteration 18,500 -> 29,000 gp
+  * Staff of illumination    51,500 -> 48,250 gp
+  * Staff of frost           41,250 -> 56,250 gp
+  * Staff of defense         (new)   -> 58,250 gp
+  * The seven school staffs   (new)   -> 65,000 gp each
+  * Staff of divination      41,250 -> 73,500 gp
+  * Staff of earth and stone 85,000 -> 80,500 gp
+  * Staff of the woodlands   31,000 -> 101,250 gp
+  * Staff of life           109,000 -> 155,750 gp
+  * Staff of passage        140,000 -> 170,500 gp
+  * Staff of power          235,000 -> 211,000 gp
+
+REMOVED as non-SRD: "Necromantic staff" (the SRD's necromancy staff
+is "Staff of necromancy", one of the seven 65,000 gp school staffs,
+with a different spell list).
+
+IMPLEMENTED, previously absent or wrong:
+  * Each staff's exact spell list WITH its charge costs (e.g. staff
+    of healing is lesser restoration 1 / cure serious wounds 1 /
+    remove blindness-deafness 2 / remove disease 3 — the old text
+    said cure serious 1, cure critical 2, heal 5, which is wrong).
+  * Staff of the woodlands: functions as a +2 quarterstaff and grants
+    pass without trace at will at no charge cost, both of which
+    continue after charges are expended.
+  * Staff of power: the full power list including the three spells
+    heightened to 5th level; the +2 luck bonus to AC and saves; the
+    +2 quarterstaff weapon form; the 1-charge double-damage strike;
+    and the complete RETRIBUTIVE STRIKE rules (8x / 6x / 4x charges
+    by distance, DC 17 Reflex for half, 50% chance of plane travel
+    otherwise death, and the fact that it stays a +2 quarterstaff
+    once empty and can then no longer be used for a retributive
+    strike).
+  * The staff activation rules (spell trigger, standard action, no
+    attack of opportunity, must be held forth in at least one hand).
+  * The staff save-DC rule: staffs use the WIELDER'S ability score
+    and feats for save DCs, and the wielder may use her own caster
+    level if higher than the staff's. Minimum caster level of a
+    staff is 8th; a staff can hold a spell of any level.
+  * Physical description (4-7 ft, 2-3 in, ~5 lb; AC 7, 10 hp,
+    hardness 5, break DC 24).
+  * Charges: 50 when created; found with d%/2 (min 1). Rolled and
+    reported.
+  * Special Qualities: the staff table is DIFFERENT from rings/rods —
+    there is NO intelligent result. 01-30 gives a clue to function,
+    31-100 gives none. Implemented exactly, which also removes the
+    earlier charged-staff/intelligent contradiction.
+
+---------------------------------------------------------------
+WONDROUS ITEMS  *** MINOR + MEDIUM COMPLETE; MAJOR NOT ***
+---------------------------------------------------------------
+IMPLEMENTED — the real SRD tables, replacing the invented price
+buckets (which also overlapped) for two of the three tiers:
+
+  * TABLE: MINOR WONDROUS ITEMS — all 100 rows transcribed, each
+    with its market price, from feather token anchor (50 gp) to
+    periapt of health (7,400 gp).
+  * TABLE: MEDIUM WONDROUS ITEMS — rows 01-81 transcribed, from
+    boots of levitation (7,500 gp) to helm of underwater action
+    (24,000 gp).
+
+AS NOTED, THE MAJOR TABLE IS NOT TRANSCRIBED. The fetched page was
+truncated before the Major Wondrous Items table, so for major wondrous
+items the engine still falls back to the legacy price-bucket pool
+(>= 20,000 gp) drawn from the old hand-written list. This is flagged
+openly on the generated item and in this log. It is the single
+largest remaining gap in this category.
+
+SUB-ROLLS RESOLVED (all SRD-mandated quantities/parameters):
+  * Dust of dryness        — 1d4+4 pellets
+  * Salve of slipperiness  — 1d4+4 doses
+  * Chime of opening       — 1d4+4 chimes
+  * Sovereign glue         — 1d8-1 oz (min 1), price scaled at
+                             2,400 gp per ounce
+  * Restorative ointment   — 2 doses
+  * Shrouds of disintegration — 4 shrouds
+  * Gem of brightness      — 50 charges, found with d%/2
+  * Elemental gem          — element rolled (air/earth/fire/water)
+  * Horn of goodness/evil  — good or evil rolled
+  * Candle of invocation   — alignment rolled
+  * Robe of useful items   — 1d4 lower-value patches rolled (the
+                             SRD's patch table itself is NOT
+                             transcribed; noted on the item)
+
+IMPLEMENTED:
+  * Special Qualities roll for wondrous items: 01 intelligent,
+    02-31 something provides a clue to its function, 32-100 no
+    special qualities. Reported on every item. (Wondrous items with
+    charges can never be intelligent — the engine does not enforce
+    this exclusion, it just reports both facts.)
+
+STILL NOT IMPLEMENTED for wondrous items:
+  * TABLE: MAJOR WONDROUS ITEMS (rows 01-100).
+  * MEDIUM rows 82-100 (the page was cut at row 81).
+  * Per-item DESCRIPTIONS for the ~130 newly transcribed items. The
+    SRD page's description prose was not carried across; an item
+    generated from these tables prints its correct name and correct
+    market price plus an explicit note that the full description is
+    in the SRD under that name. Where the old hand-written list
+    happened to contain the same item (e.g. bag of holding, cloak of
+    resistance, pearl of power, ioun stones), no description is
+    attached either, because the tables drive selection. Flagged as
+    the main work still outstanding.
+  * The Ioun Stones sub-table (the SRD lists each stone separately
+    with its own price, which the transcribed rows do capture, but
+    the stone-by-stone power descriptions are not carried across).
+
+---------------------------------------------------------------
+CURSED ITEMS  *** FULL MECHANICS IMPLEMENTED ***
+---------------------------------------------------------------
+Previously the engine only flagged an item as cursed and stuck a name
+on it. It now rolls on a full 29-entry cursed-item table where each
+entry carries three fields, all of which are printed on the item:
+
+  * appears   — what the item masquerades as
+  * mechanics — the complete SRD mechanics of the curse
+  * detected  — the specific trigger that reveals the curse
+
+The generated item now shows BOTH: the ordinary item description it
+appeared to have (explicitly labelled FALSE) and its true cursed
+identity with mechanics and detection condition.
+
+IMPLEMENTED with full mechanics:
+  arrow of direction, armor of rage, berserking sword, bracers of
+  defenselessness, cursed armor, cursed shield, cursed weapon,
+  cursed scroll, dagger of venom, delusion, enemy's ring, flask of
+  curses, gauntlets of fumbling, girdle of masculinity/femininity,
+  glasses of deception, necklace of strangulation, periapt of foul
+  rotting, potion of delusion, potion of poison, ring of clumsiness,
+  ring of contrariness, robe of powerlessness, rod of bewonderment,
+  scarab of death, shield of missile attraction, spear of curses,
+  stone of weight, vacuous grimoire, brooch of numbing numbness.
+
+ALSO now printed on every cursed item:
+  * That detect magic alone does not reveal the curse.
+  * That curses are not removed by dispel magic — remove curse,
+    break enchantment, wish or miracle are required.
+  * That a specific subset of cursed items cannot be discarded at
+    all until the curse is broken.
+  * The actual d% result that triggered the 5% cursed check, for the
+    audit trail.
+
+CAVEATS, flagged rather than hidden:
+  * The 3.5 SRD does not print a single canonical "Table: Cursed
+    Items" with d% ranges; it describes cursed items individually
+    across the item pages. The 29 entries above are therefore drawn
+    from those descriptions and presented as a flat list chosen
+    UNIFORMLY. The SRD gives no weighting, so uniform is defensible,
+    but it is an engine decision.
+  * The precise numeric details of each curse (save DCs, damage
+    dice, durations) are drawn from the SRD's individual
+    descriptions where those were checked, but this pass did NOT
+    re-fetch the individual cursed-item pages to verify each figure.
+    Treat the numbers as reliable in intent and verify against the
+    SRD before relying on them in play.
+  * The item is NOT re-rolled to make the cursed item's apparent form
+    plausible. A "cursed armor" result can therefore be appended to a
+    randomly generated wand, ring or scroll, which is nonsensical.
+    The generator applies the curse to whatever category was rolled
+    and simply states what the cursed item appears to be. Flagged as
+    a known weakness — the correct behaviour would be to discard the
+    rolled item and generate a plausible host item of the matching
+    kind.
+
+---------------------------------------------------------------
+VERIFICATION STATUS AFTER THIS PASS
+---------------------------------------------------------------
+CONFIRMED COMPLETE (verbatim SRD, all d% columns, all prices):
+  * Table: Potions and Oils (all three columns, 300 rows total)
+  * Table: Staffs (both columns, 22 staffs)
+  * Table: Scroll Types / Number of Spells / Scroll Spell Levels
+  * Table: Minor Wondrous Items (all 100 rows)
+  * Table: Medium Wondrous Items (rows 01-81)
+  * Table: Rings (all three columns, 41 entries)
+  * Table: Rods (both columns, 35 entries)
+  * Table: Armor and Shields, Table: Weapons, Table: Random Armor
+    Type, Table: Random Shield Type, Table: Specific Armors,
+    Table: Specific Shields, Table: Weapon Type Determination, the
+    Slaying Arrow designated-type table
+  * Table: Treasure (CR 1-20) and the epic bonus-major-item counts
+  * Table: Gems, Table: Art Objects, Table: Mundane Items and its
+    darkwood and masterwork-shield subtables
+  * Scroll mishaps, staff/ring/rod/wondrous Special Qualities
+
+STILL OPEN, in rough priority order:
+  1. Table: Arcane Spell Scrolls and Table: Divine Spell Scrolls
+     (weighted d% per spell level, with per-spell prices) — scrolls
+     are the biggest outstanding infidelity.
+  2. Table: Major Wondrous Items and Medium rows 82-100.
+  3. Wondrous item per-item descriptions (~130 items).
+  4. Cursed items: host-item plausibility (a cursed result should
+     replace the rolled item with a matching one).
+  5. Wand spell tables (Table: Minor/Medium/Major Wand Spells,
+     split arcane/divine) — never fetched.
+  6. Ranged Weapon Special Abilities table (melee table is used for
+     all weapons).
+  7. Full Table: Weapons / Table: Armor and Shields (every simple,
+     martial and exotic weapon) — currently a subset.
+  8. Double-weapon rules (two enhancement bonuses, doubled
+     masterwork and bonus costs).
+  9. Intelligent item generation (SRD gives a full system).
+ 10. Table: Rod of Wonder effects are printed as text but not rolled
+     at generation time.
+
+=================================================================
+END OF THIRD PASS
+=================================================================

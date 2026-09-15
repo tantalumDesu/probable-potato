@@ -1,0 +1,287 @@
+================================================================================
+TURBOCHARGER
+d20 SRD Treasure Generator
+Changes that would make the app more complete, in order of priority.
+
+Each entry states what is missing, why it matters, and roughly how large the
+work is. "S" is a few hours, "M" is a day or two, "L" is a multi-day project.
+================================================================================
+
+--------------------------------------------------------------------------------
+TIER 1 - CORRECTNESS. These produce wrong or absurd output today.
+--------------------------------------------------------------------------------
+
+1.  Cursed items should replace the rolled item, not re-label it            [M]
+
+    A rolled wand can currently be re-labelled "cursed armor", and a rolled ring
+    re-labelled "vacuous grimoire". This is the single most visible absurdity the
+    app produces and it appears in roughly one hoard in twenty.
+
+    Fix: partition the 29-entry cursed-item list by the kind of item it
+    masquerades as (weapon / armour / shield / ring / rod / wondrous / potion /
+    scroll), roll a host item of the matching category, then apply the curse.
+    Where the SRD states an apparent form explicitly - berserking sword is a
+    sword, necklace of strangulation is a necklace - the host should be that
+    item, not a random one.
+
+2.  Intelligent weapon alignment must agree with its abilities              [S]
+
+    The SRD says a random intelligent weapon's alignment "must fit with any
+    alignment-oriented special abilities it has". The app rolls alignment
+    independently, so it can produce a lawful good weapon carrying an unholy
+    ability.
+
+    Fix: after generating a weapon with holy, unholy, anarchic or axiomatic,
+    constrain the intelligent-alignment roll to the alignments consistent with
+    that ability. Holy permits good alignments, unholy permits evil, anarchic
+    permits chaotic, axiomatic permits lawful. Where the constraint cannot be
+    satisfied by the table, reroll the alignment.
+
+3.  Double-weapon second-head pricing is rolled but not costed              [S]
+
+    The second head's bonus is rolled (same bonus on 01-50, one less on 51-100)
+    but the "one less" case does not reduce the enhancement cost the app reports.
+    The special-abilities budget also treats the weapon as single-headed.
+
+    Fix: compute both heads' bonuses, sum their squared costs, and exclude the
+    second head from the special-ability roll as the SRD directs.
+
+4.  Mithral weapon cost should be per pound                                [S]
+
+    The SRD prices mithral at "+500 gp/lb" for items other than armour and
+    shields. The app charges a flat +500 gp regardless of the weapon's weight. A
+    mithral greatsword (8 lb) should be +4,000 gp, not +500.
+
+    Fix: multiply the weapon's weight by 500.
+
+5.  Ammunition quantities beyond the per-50 quote                          [S]
+
+    The SRD's weapon base-price column is quoted per 50 arrows, bolts, shuriken
+    or sling bullets. The app generates one pack and says so, but never rolls how
+    many packs are in a hoard, and never notes the magic-ammunition breakage rule
+    (50% chance of being useless on a miss, always destroyed on a hit).
+
+    Fix: roll a number of packs, and print the breakage rule on magic ammunition.
+
+--------------------------------------------------------------------------------
+TIER 2 - COMPLETENESS. Real gaps where the SRD has content the app lacks.
+--------------------------------------------------------------------------------
+
+6.  Nonstandard treasure adjustments                                       [M]
+
+    The SRD's treasure chapter describes four adjustments the app does not
+    implement at all: fractional coins (roll for coins but divide the result),
+    "% goods or items" (roll d% first and only generate on a success), double
+    goods or items (roll twice), and the parenthetical "no" / "only" notes that
+    restrict what a creature collects.
+
+    Fix: add a per-monster modifier panel alongside the CR selector, letting the
+    user mark a hoard as fractional, double, or "% goods/items", and apply the
+    notes. This is the feature that would make the app useful for preparing an
+    actual encounter rather than a generic hoard.
+
+7.  Treasure Values per Encounter and Average Treasure Results             [S]
+
+    Both tables are in the SRD's treasure chapter and neither is exposed. They
+    are the natural way to sanity-check a generated hoard: 300 gp at EL 1 up to
+    80,000 gp at EL 20, and the expected value of each treasure type.
+
+    Fix: show the expected value for the chosen level next to the generated
+    hoard's actual total, with a "way over / about right / stingy" indicator.
+    Cheap to build and immediately useful.
+
+8.  Encounter-level generation                                             [M]
+
+    The app generates by CR. The SRD's tables are keyed to encounter level, and
+    for a mixed group of monsters the EL is not the sum of the CRs. There is no
+    way to say "three CR 2 orcs and a CR 3 chief" and get one hoard.
+
+    Fix: let the user enter a group of monsters, compute the encounter level per
+    the SRD's rules, and generate one hoard for the encounter.
+
+9.  Export                                                                 [M]
+
+    A generated hoard cannot be saved, copied as text or downloaded. At the
+    table this is the difference between a demo and a tool.
+
+    Fix: a copy-to-clipboard button producing clean plain text, and a download
+    producing Markdown and JSON. Also a session history so several hoards can be
+    generated and compared.
+
+10. Intelligent items: the SRD's demand and punishment lists               [S]
+
+    The SRD lists eight demands a dominant item may make and six harsher
+    measures it may resort to. They are not reproduced on the item, so the user
+    has to look them up.
+
+    Fix: include both lists in the generated item's text, since the item already
+    reports its Ego and therefore whether the item can dominate.
+
+11. The old curated spell list - DONE this pass                            [S]
+
+    The complete 608-spell SRD set is in the app and the 194-spell curated list
+    in spells.ts was no longer imported by the generator. It has been deleted.
+    Verified: no file in src/ imports from data/spells, and the project builds
+    cleanly without it.
+
+12. Intelligent items on specific weapons of fixed alignment               [S]
+
+    Related to Tier 1 item 2 but distinct: several specific weapons in the SRD
+    are stated to be of a fixed alignment (sun blade is good, nine lives stealer
+    is evil, holy avenger is good). An intelligent roll on such a weapon should
+    adopt that alignment rather than rolling.
+
+    Fix: detect an alignment statement in the specific weapon's description and
+    pin the intelligent item's alignment to it.
+
+--------------------------------------------------------------------------------
+TIER 3 - USABILITY. The data is right; the experience could be better.
+--------------------------------------------------------------------------------
+
+13. Per-item and per-hoard filtering and sorting                           [M]
+
+    A CR 20 hoard can contain forty items. There is no way to sort by price, no
+    way to filter to magic only, no way to collapse everything at once, and no
+    way to hide the dice logs globally.
+
+    Fix: sort controls on each section, a global "expand/collapse all", a "hide
+    roll details" toggle, and a "magic items only" filter.
+
+14. Searchable reference browser                                           [L]
+
+    All 608 spells, 300 wondrous items, 34 specific weapons, 12 specific armours,
+    8 specific shields, 41 rings, 35 rods, 22 staffs and every potion are in the
+    app as data. None of them is browsable - the app only shows what it happens
+    to roll.
+
+    Fix: a second view that lists and searches the transcribed content. This
+    turns the app from a generator into a reference as well, and it is nearly
+    free because the data is already there.
+
+15. Persistent session state                                               [S]
+
+    A refresh loses the hoard, the CR and the seed. The seed field exists for
+    reproducibility but is not preserved.
+
+    Fix: persist the last hoard, CR and seed to local storage, and show the seed
+    that produced a hoard so it can be recreated.
+
+16. CR and seed in the URL                                                 [S]
+
+    Two people cannot share a generated hoard by link.
+
+    Fix: encode CR and seed in the query string and read it back on load.
+
+17. Weight and load totals                                                [S]
+
+    The app tracks no weight. A hoard's total weight is the practical limit on
+    what a party can carry, and the SRD gives a weight for almost every item.
+
+    Fix: store and total weight, and show it against the hoard total.
+
+18. Dice log readability                                                  [S]
+
+    A CR 20 hoard's log can run to hundreds of lines with no grouping. Rerolls
+    are marked for weapon abilities but not for armour abilities.
+
+    Fix: group the log by item, mark rerolls consistently, and allow a single
+    roll to be expanded to see its raw die values.
+
+19. Mobile layout                                                         [S]
+
+    The CR selector and the wide item cards are cramped on a phone. Most use at
+    the table is on a phone.
+
+    Fix: a responsive pass on the CR selector and the item cards.
+
+--------------------------------------------------------------------------------
+TIER 4 - BREADTH. Content the SRD has that the app does not touch.
+--------------------------------------------------------------------------------
+
+20. Artifacts                                                             [M]
+
+    The SRD lists minor and major artifacts with full descriptions. The app
+    generates none, on the reasonable ground that the DM places them - but there
+    is no reason the app could not offer an optional "include artifacts" toggle
+    for DMs who want one.
+
+21. Monster treasure entries                                              [L]
+
+    The SRD's monster entries state what treasure each creature carries and in
+    what proportions. The app generates from CR alone and ignores this. Carrying
+    the monster treasure table would let a user generate a hoard for a specific
+    creature rather than a CR.
+
+22. NPC gear and wealth by level                                          [M]
+
+    The SRD gives wealth-per-level tables for player characters and NPC classes,
+    which is how a replacement character's kit is usually generated. Not
+    implemented.
+
+23. Goods and services                                                    [M]
+
+    The SRD's goodsAndServices page has the full armour, weapon, tool, animal,
+    lodging, hireling and spellcasting-service price lists. The app has the
+    mundane items table but not the rest. A shop generator would be a natural
+    companion feature and would reuse most of the same data.
+
+24. Random encounter generation                                           [L]
+
+    The SRD has encounter tables by terrain and climate. Combined with item 8
+    this would let the app generate a complete encounter including its treasure.
+
+25. Cursed item mechanics for each individual curse                       [M]
+
+    The app names a curse and describes it, but the numerical details of the 29
+    curses were written from the SRD's individual descriptions as understood at
+    the time and have not been re-verified against those pages. A pass to confirm
+    each save DC, damage figure and duration against the SRD would close this.
+
+26. Spell data: domains and levels per class                              [M]
+
+    The 608 transcribed spells carry the Level line as the SRD prints it
+    ("Sor/Wiz 2, Water 7"), which is faithful but not structured. Nothing in the
+    app can ask "show me all 3rd-level cleric spells".
+
+    Fix: parse the Level line into per-class levels, which would also let the
+    divine scroll table pick from a specific class list rather than a merged
+    divine list.
+
+27. Spell descriptions for generated items are long                       [S]
+
+    A scroll of nine spells now embeds nine complete SRD stat blocks and
+    descriptions, which can run to several thousand words on one item card. The
+    data is correct; the presentation is overwhelming.
+
+    Fix: collapse each spell to its name by default with an expander for the
+    full text, and add a "compact item cards" toggle.
+
+28. Localisation of the item name prefix                                  [S]
+
+    The app hard-codes English phrasing ("Oil of", "Potion of", "Intelligent",
+    "CURSED"). Not a fidelity issue, but a barrier if the app is ever used in
+    another language.
+
+    Fix: move the prefixes into a single table so they can be translated.
+
+================================================================================
+IF ONLY THREE THINGS GET DONE
+================================================================================
+
+  1. Tier 1 item 1 - cursed items must replace the rolled item. It is the one
+     change that stops the app producing visibly absurd output.
+
+  2. Tier 1 item 2 - intelligent weapon alignment. Same reasoning: it produces
+     combinations the SRD explicitly forbids.  (Item 11 is also done.)
+
+  3. Tier 3 item 9 - export. Without it the app cannot be used at the table,
+     which is the whole point of a treasure generator.
+
+Tier 2 item 6 (nonstandard treasure adjustments) and item 7 (expected value)
+would be the next two, because together they turn the app from a random hoard
+generator into something that can prepare a real encounter and tell you whether
+the result is reasonable.
+
+================================================================================
+END OF TURBOCHARGER
+================================================================================
