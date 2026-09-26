@@ -1,0 +1,109 @@
+{
+  "modifiers": [
+    {
+      "id": "cost:adamantine:ammunition",
+      "material": "adamantine",
+      "item_type": "Ammunition",
+      "cost_modifier": "+60 gp",
+      "source_file": "adamantine-cost-modifiers.json"
+    },
+    {
+      "id": "cost:adamantine:light-armor",
+      "material": "adamantine",
+      "item_type": "Light armor",
+      "cost_modifier": "+5,000 gp",
+      "source_file": "adamantine-cost-modifiers.json"
+    },
+    {
+      "id": "cost:adamantine:medium-armor",
+      "material": "adamantine",
+      "item_type": "Medium armor",
+      "cost_modifier": "+10,000 gp",
+      "source_file": "adamantine-cost-modifiers.json"
+    },
+    {
+      "id": "cost:adamantine:heavy-armor",
+      "material": "adamantine",
+      "item_type": "Heavy armor",
+      "cost_modifier": "+15,000 gp",
+      "source_file": "adamantine-cost-modifiers.json"
+    },
+    {
+      "id": "cost:adamantine:weapon",
+      "material": "adamantine",
+      "item_type": "Weapon",
+      "cost_modifier": "+3,000 gp",
+      "source_file": "adamantine-cost-modifiers.json"
+    },
+    {
+      "id": "cost:adamantine:shield",
+      "material": "adamantine",
+      "item_type": "Shield",
+      "cost_modifier": "+2,000 gp",
+      "source_file": "adamantine-cost-modifiers.json"
+    },
+    {
+      "id": "cost:alchemical-silver:ammunition",
+      "material": "alchemical-silver",
+      "item_type": "Ammunition",
+      "cost_modifier": "+2 gp",
+      "source_file": "alchemical-silver-cost-modifiers.json"
+    },
+    {
+      "id": "cost:alchemical-silver:light-weapon",
+      "material": "alchemical-silver",
+      "item_type": "Light weapon",
+      "cost_modifier": "+20 gp",
+      "source_file": "alchemical-silver-cost-modifiers.json"
+    },
+    {
+      "id": "cost:alchemical-silver:one-handed-weapon-or-one-head-of-a",
+      "material": "alchemical-silver",
+      "item_type": "One-handed weapon, or one head of a",
+      "cost_modifier": "+90 gp",
+      "source_file": "alchemical-silver-cost-modifiers.json"
+    },
+    {
+      "id": "cost:alchemical-silver:two-handed-weapon-or-both-heads-of-a",
+      "material": "alchemical-silver",
+      "item_type": "Two-handed weapon, or both heads of a",
+      "cost_modifier": "+180 gp",
+      "source_file": "alchemical-silver-cost-modifiers.json"
+    },
+    {
+      "id": "cost:mithral:light-armor",
+      "material": "mithral",
+      "item_type": "Light armor",
+      "cost_modifier": "+1,000 gp",
+      "source_file": "mithral-cost-modifiers.json"
+    },
+    {
+      "id": "cost:mithral:medium-armor",
+      "material": "mithral",
+      "item_type": "Medium armor",
+      "cost_modifier": "+4,000 gp",
+      "source_file": "mithral-cost-modifiers.json"
+    },
+    {
+      "id": "cost:mithral:heavy-armor",
+      "material": "mithral",
+      "item_type": "Heavy armor",
+      "cost_modifier": "+9,000 gp",
+      "source_file": "mithral-cost-modifiers.json"
+    },
+    {
+      "id": "cost:mithral:shield",
+      "material": "mithral",
+      "item_type": "Shield",
+      "cost_modifier": "+1,000 gp",
+      "source_file": "mithral-cost-modifiers.json"
+    },
+    {
+      "id": "cost:mithral:other-items",
+      "material": "mithral",
+      "item_type": "Other items",
+      "cost_modifier": "+500 gp/lb.",
+      "source_file": "mithral-cost-modifiers.json"
+    }
+  ]
+}

@@ -1,0 +1,1343 @@
+{
+  "datasets": {
+    "magic-item-special-qualities": {
+      "source_files": [
+        "magic-item-special-qualities.json"
+      ],
+      "data": [
+        {
+          "category": "Ring",
+          "roll": "d%",
+          "results": [
+            {
+              "range": "01",
+              "effect": "The ring is intelligent."
+            },
+            {
+              "range": "02-31",
+              "effect": "A design, inscription, or similar feature provides a clue to the ring’s function."
+            },
+            {
+              "range": "32-100",
+              "effect": "No special qualities."
+            }
+          ],
+          "additional_rules": [
+            "Intelligent items have extra abilities and sometimes extraordinary powers and special purposes.",
+            "Rings with charges can never be intelligent."
+          ]
+        },
+        {
+          "category": "Rod",
+          "roll": "d%",
+          "results": [
+            {
+              "range": "01",
+              "effect": "The rod is intelligent."
+            },
+            {
+              "range": "02-31",
+              "effect": "A design, inscription, or similar feature provides a clue to the rod’s function."
+            },
+            {
+              "range": "32-100",
+              "effect": "No special qualities."
+            }
+          ],
+          "additional_rules": [
+            "Intelligent items have extra abilities and sometimes extraordinary powers and special purposes.",
+            "Rods with charges can never be intelligent."
+          ]
+        },
+        {
+          "category": "Staff",
+          "roll": "d%",
+          "results": [
+            {
+              "range": "01-30",
+              "effect": "A design, inscription, or similar feature provides a clue to the staff’s function."
+            },
+            {
+              "range": "31-100",
+              "effect": "No special qualities."
+            }
+          ],
+          "additional_rules": []
+        },
+        {
+          "category": "Wand",
+          "roll": "d%",
+          "results": [
+            {
+              "range": "01-30",
+              "effect": "A design, inscription, or similar feature provides a clue to the wand’s function."
+            },
+            {
+              "range": "31-100",
+              "effect": "No special qualities."
+            }
+          ],
+          "additional_rules": []
+        },
+        {
+          "category": "Wondrous Item",
+          "roll": "d%",
+          "results": [
+            {
+              "range": "01",
+              "effect": "The wondrous item is intelligent."
+            },
+            {
+              "range": "02-31",
+              "effect": "A design, inscription, or similar feature provides a clue to its function."
+            },
+            {
+              "range": "32-100",
+              "effect": "No special qualities."
+            }
+          ],
+          "additional_rules": [
+            "Intelligent items have extra abilities and sometimes extraordinary powers and special purposes.",
+            "Wondrous items with charges can never be intelligent."
+          ]
+        }
+      ]
+    },
+    "cursed-item-malfunctions-and-requirements": {
+      "source_files": [
+        "cursed-item-malfunctions-and-requirements.json"
+      ],
+      "data": {
+        "title": "Cursed Item Malfunctions and Requirements",
+        "sections": [
+          {
+            "name": "Delusion",
+            "description": "The user believes the item is what it appears to be, yet it actually has no magical power other than to deceive. The user is mentally fooled into thinking the item is functioning and cannot be convinced otherwise without the help of a remove curse spell."
+          },
+          {
+            "name": "Opposite Effect or Target",
+            "description": "These cursed items malfunction, so that either they do the opposite of what the creator intended, or they target the user instead of someone else. The interesting point to keep in mind here is that these items aren’t always bad to have. Opposite-effect items include weapons that impose penalties on attack and damage rolls rather than bonuses. Just as a character shouldn’t necessarily immediately know what the enhancement bonus of a noncursed magic item is, she shouldn’t immediately know that a weapon is cursed. Once she knows, however, the item can be discarded unless some sort of compulsion is placed upon it that compels the wielder to keep and use it. In such cases, a remove curse spell is generally needed to get rid of the item."
+          },
+          {
+            "name": "Intermittent Functioning",
+            "description": "The three varieties of intermittent functioning items all function perfectly as described—at least some of the time. The three varieties are unreliable, dependent, and uncontrolled items.",
+            "varieties": [
+              {
+                "name": "Unreliable",
+                "description": "Each time the item is activated, there is a 5% chance (01-05 on d%) that it does not function."
+              },
+              {
+                "name": "Dependent",
+                "description": "The item only functions in certain situations. To determine what the situation is, either select a situation or roll on the following table.",
+                "referenced_table_included": false
+              },
+              {
+                "name": "Uncontrolled",
+                "description": "An uncontrolled item occasionally activates at random times. Roll d% every day. On a result of 01-05 the item activates at some random point during that day."
+              }
+            ]
+          },
+          {
+            "name": "Requirement",
+            "description": "In a sense, a command word is a requirement. Nevertheless, some items have much more stringent requirements that must be met for them to be usable. To keep an item with this kind of curse functioning, one or more of the following conditions must be met.",
+            "conditions": [
+              "Character must eat twice as much as normal.",
+              "Character must sleep twice as much as normal.",
+              "Character must undergo a specific quest (one time only, and then item functions normally thereafter).",
+              "Character must sacrifice (destroy) 100 gp worth of valuables per day.",
+              "Character must sacrifice (destroy) 2,000 gp worth of magic items each week.",
+              "Character must swear fealty to a particular noble or his family.",
+              "Character must discard all other magic items.",
+              "Character must worship a particular deity.",
+              "Character must change her name to a specific name. (The item only works for characters of that name.)",
+              "Character must add a specific class at the next opportunity if not of that class already.",
+              "Character must have a minimum number of ranks in a particular skill.",
+              "Character must sacrifice some part of her life energy (2 points of Constitution) one time. If the character gets the Constitution points back (such as from a restoration spell), the item ceases functioning. (The item does not cease functioning if the character receives a Constitution increase caused by level gain, a wish, or the use of a magic item.)",
+              "Item must be cleansed with holy water each day.",
+              "Item must be used to kill a living creature each day.",
+              "Item must be bathed in volcanic lava once per month.",
+              "Item must be used at least once a day, or it won’t function again for its current possessor.",
+              "Item must draw blood when wielded (weapons only). It can’t be put away or exchanged for another weapon until it has scored a hit.",
+              "Item must have a particular spell cast upon it each day (such as bless, atonement, or animate objects)."
+            ],
+            "additional_description": "Requirements are so dependent upon suitability to the item that they should never be determined randomly. An item with a requirement that is also intelligent often imposes its requirement through its personality. If the requirement is not met, the item ceases to function. If it is met, usually the item functions for one day before the requirement must be met again (although some requirements are one time only, others monthly, and still others continuous)."
+          },
+          {
+            "name": "Drawback",
+            "description": "Items with drawbacks are usually still beneficial to the possessor but they also carry some negative aspect. Although sometimes drawbacks occur only when the item is used (or held, in the case of some items such as weapons), usually the drawback remains with the character for as long as she has the item.",
+            "roll_instruction": "Roll on the table below to generate a drawback that (unless otherwise indicated) remains in effect as long as the item is in the character’s possession.",
+            "referenced_table_included": false
+          }
+        ]
+      }
+    },
+    "larger-and-smaller-weapon-damage": {
+      "source_files": [
+        "larger-and-smaller-weapon-damage.json"
+      ],
+      "data": {
+        "title": "Larger and Smaller Weapon Damage",
+        "example_weapon_size": "Medium",
+        "size_categories": [
+          "Fine",
+          "Diminutive",
+          "Tiny",
+          "Small",
+          "Medium",
+          "Large",
+          "Huge",
+          "Gargantuan",
+          "Colossal"
+        ],
+        "weapons": [
+          {
+            "weapon": "Shuriken",
+            "damage_by_size": {
+              "Fine": "—",
+              "Diminutive": "—",
+              "Tiny": "—",
+              "Small": "1",
+              "Medium": "1d2",
+              "Large": "1d3",
+              "Huge": "1d4",
+              "Gargantuan": "1d6",
+              "Colossal": "1d8"
+            }
+          },
+          {
+            "weapon": "Gauntlet",
+            "damage_by_size": {
+              "Fine": "—",
+              "Diminutive": "—",
+              "Tiny": "1",
+              "Small": "1d2",
+              "Medium": "1d3",
+              "Large": "1d4",
+              "Huge": "1d6",
+              "Gargantuan": "1d8",
+              "Colossal": "2d6"
+            }
+          },
+          {
+            "weapon": "Dagger",
+            "damage_by_size": {
+              "Fine": "—",
+              "Diminutive": "1",
+              "Tiny": "1d2",
+              "Small": "1d3",
+              "Medium": "1d4",
+              "Large": "1d6",
+              "Huge": "1d8",
+              "Gargantuan": "2d6",
+              "Colossal": "3d6"
+            }
+          },
+          {
+            "weapon": "Shortspear",
+            "damage_by_size": {
+              "Fine": "1",
+              "Diminutive": "1d2",
+              "Tiny": "1d3",
+              "Small": "1d4",
+              "Medium": "1d6",
+              "Large": "1d8",
+              "Huge": "2d6",
+              "Gargantuan": "3d6",
+              "Colossal": "4d6"
+            }
+          },
+          {
+            "weapon": "Falchion",
+            "damage_by_size": {
+              "Fine": "1d2",
+              "Diminutive": "1d3",
+              "Tiny": "1d4",
+              "Small": "1d6",
+              "Medium": "2d4",
+              "Large": "2d6",
+              "Huge": "3d6",
+              "Gargantuan": "4d6",
+              "Colossal": "6d6"
+            }
+          },
+          {
+            "weapon": "Longsword",
+            "damage_by_size": {
+              "Fine": "1d2",
+              "Diminutive": "1d3",
+              "Tiny": "1d4",
+              "Small": "1d6",
+              "Medium": "1d8",
+              "Large": "2d6",
+              "Huge": "3d6",
+              "Gargantuan": "4d6",
+              "Colossal": "6d6"
+            }
+          },
+          {
+            "weapon": "Bastard Sword",
+            "damage_by_size": {
+              "Fine": "1d3",
+              "Diminutive": "1d4",
+              "Tiny": "1d6",
+              "Small": "1d8",
+              "Medium": "1d10",
+              "Large": "2d8",
+              "Huge": "3d8",
+              "Gargantuan": "4d8",
+              "Colossal": "6d8"
+            }
+          },
+          {
+            "weapon": "Greataxe",
+            "damage_by_size": {
+              "Fine": "1d4",
+              "Diminutive": "1d6",
+              "Tiny": "1d8",
+              "Small": "1d10",
+              "Medium": "1d12",
+              "Large": "3d6",
+              "Huge": "4d6",
+              "Gargantuan": "6d6",
+              "Colossal": "8d6"
+            }
+          },
+          {
+            "weapon": "Greatsword",
+            "damage_by_size": {
+              "Fine": "1d4",
+              "Diminutive": "1d6",
+              "Tiny": "1d8",
+              "Small": "1d10",
+              "Medium": "2d6",
+              "Large": "3d6",
+              "Huge": "4d6",
+              "Gargantuan": "6d6",
+              "Colossal": "8d6"
+            }
+          }
+        ]
+      }
+    },
+    "weapon-equipment-statistics": {
+      "source_files": [
+        "weapon-equipment-statistics.json"
+      ],
+      "data": {
+        "title": "Weapons",
+        "table_notes": [
+          "Weight figures are for Medium weapons. A Small weapon weighs half as much, and a Large weapon weighs twice as much.",
+          "When two types are given, the weapon is both types if the entry specifies 'and,' or either type (player’s choice at time of attack) if the entry specifies 'or.'"
+        ],
+        "columns": [
+          "Weapon",
+          "Cost",
+          "Damage (Small)",
+          "Damage (Medium)",
+          "Critical",
+          "Range Increment",
+          "Weight",
+          "Type"
+        ],
+        "weapons": [
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Unarmed Attacks",
+            "weapon": "Gauntlet",
+            "cost": "2 gp",
+            "damage_small": "1d2",
+            "damage_medium": "1d3",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "1 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Unarmed Attacks",
+            "weapon": "Unarmed strike",
+            "cost": "—",
+            "damage_small": "1d2",
+            "damage_medium": "1d3",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "—",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Dagger",
+            "cost": "2 gp",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "19-20/×2",
+            "range_increment": "10 ft.",
+            "weight_medium": "1 lb.",
+            "damage_type": "Piercing or slashing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Dagger, punching",
+            "cost": "2 gp",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "1 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Gauntlet, spiked",
+            "cost": "5 gp",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "1 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Mace, light",
+            "cost": "5 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "4 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Sickle",
+            "cost": "6 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "2 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Club",
+            "cost": "—",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "10 ft.",
+            "weight_medium": "3 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Mace, heavy",
+            "cost": "12 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "8 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Morningstar",
+            "cost": "8 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "6 lb.",
+            "damage_type": "Bludgeoning and piercing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Shortspear",
+            "cost": "1 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "20 ft.",
+            "weight_medium": "3 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Longspear",
+            "cost": "5 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "9 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Quarterstaff",
+            "cost": "—",
+            "damage_small": "1d4/1d4",
+            "damage_medium": "1d6/1d6",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "4 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Spear",
+            "cost": "2 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "×3",
+            "range_increment": "20 ft.",
+            "weight_medium": "6 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Crossbow, heavy",
+            "cost": "50 gp",
+            "damage_small": "1d8",
+            "damage_medium": "1d10",
+            "critical": "19-20/×2",
+            "range_increment": "120 ft.",
+            "weight_medium": "8 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Bolts, crossbow (10)",
+            "cost": "1 gp",
+            "damage_small": "—",
+            "damage_medium": "—",
+            "critical": "—",
+            "range_increment": "—",
+            "weight_medium": "1 lb.",
+            "damage_type": "—"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Crossbow, light",
+            "cost": "35 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "19-20/×2",
+            "range_increment": "80 ft.",
+            "weight_medium": "4 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Bolts, crossbow (10)",
+            "cost": "1 gp",
+            "damage_small": "—",
+            "damage_medium": "—",
+            "critical": "—",
+            "range_increment": "—",
+            "weight_medium": "1 lb.",
+            "damage_type": "—"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Dart",
+            "cost": "5 sp",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "×2",
+            "range_increment": "20 ft.",
+            "weight_medium": "½ lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Javelin",
+            "cost": "1 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "30 ft.",
+            "weight_medium": "2 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Sling",
+            "cost": "—",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "×2",
+            "range_increment": "50 ft.",
+            "weight_medium": "0 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Simple Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Bullets, sling (10)",
+            "cost": "1 sp",
+            "damage_small": "—",
+            "damage_medium": "—",
+            "critical": "—",
+            "range_increment": "—",
+            "weight_medium": "5 lb.",
+            "damage_type": "—"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Axe, throwing",
+            "cost": "8 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "10 ft.",
+            "weight_medium": "2 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Hammer, light",
+            "cost": "1 gp",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "×2",
+            "range_increment": "20 ft.",
+            "weight_medium": "2 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Handaxe",
+            "cost": "6 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "3 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Kukri",
+            "cost": "8 gp",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "18-20/×2",
+            "range_increment": "—",
+            "weight_medium": "2 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Pick, light",
+            "cost": "4 gp",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "×4",
+            "range_increment": "—",
+            "weight_medium": "3 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Sap",
+            "cost": "1 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "2 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Shield, light",
+            "cost": "special",
+            "damage_small": "1d2",
+            "damage_medium": "1d3",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "special",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Spiked armor",
+            "cost": "special",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "special",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Spiked shield, light",
+            "cost": "special",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "special",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Sword, short",
+            "cost": "10 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "19-20/×2",
+            "range_increment": "—",
+            "weight_medium": "2 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Battleaxe",
+            "cost": "10 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "6 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Flail",
+            "cost": "8 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "5 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Longsword",
+            "cost": "15 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "19-20/×2",
+            "range_increment": "—",
+            "weight_medium": "4 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Pick, heavy",
+            "cost": "8 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×4",
+            "range_increment": "—",
+            "weight_medium": "6 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Rapier",
+            "cost": "20 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "18-20/×2",
+            "range_increment": "—",
+            "weight_medium": "2 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Scimitar",
+            "cost": "15 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "18-20/×2",
+            "range_increment": "—",
+            "weight_medium": "4 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Shield, heavy",
+            "cost": "special",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "special",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Spiked shield, heavy",
+            "cost": "special",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "special",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Trident",
+            "cost": "15 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "×2",
+            "range_increment": "10 ft.",
+            "weight_medium": "4 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Warhammer",
+            "cost": "12 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "5 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Falchion",
+            "cost": "75 gp",
+            "damage_small": "1d6",
+            "damage_medium": "2d4",
+            "critical": "18-20/×2",
+            "range_increment": "—",
+            "weight_medium": "8 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Glaive",
+            "cost": "8 gp",
+            "damage_small": "1d8",
+            "damage_medium": "1d10",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "10 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Greataxe",
+            "cost": "20 gp",
+            "damage_small": "1d10",
+            "damage_medium": "1d12",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "12 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Greatclub",
+            "cost": "5 gp",
+            "damage_small": "1d8",
+            "damage_medium": "1d10",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "8 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Flail, heavy",
+            "cost": "15 gp",
+            "damage_small": "1d8",
+            "damage_medium": "1d10",
+            "critical": "19-20/×2",
+            "range_increment": "—",
+            "weight_medium": "10 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Greatsword",
+            "cost": "50 gp",
+            "damage_small": "1d10",
+            "damage_medium": "2d6",
+            "critical": "19-20/×2",
+            "range_increment": "—",
+            "weight_medium": "8 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Guisarme",
+            "cost": "9 gp",
+            "damage_small": "1d6",
+            "damage_medium": "2d4",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "12 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Halberd",
+            "cost": "10 gp",
+            "damage_small": "1d8",
+            "damage_medium": "1d10",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "12 lb.",
+            "damage_type": "Piercing or slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Lance",
+            "cost": "10 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "10 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Ranseur",
+            "cost": "10 gp",
+            "damage_small": "1d6",
+            "damage_medium": "2d4",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "12 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Scythe",
+            "cost": "18 gp",
+            "damage_small": "1d6",
+            "damage_medium": "2d4",
+            "critical": "×4",
+            "range_increment": "—",
+            "weight_medium": "10 lb.",
+            "damage_type": "Piercing or slashing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Longbow",
+            "cost": "75 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "×3",
+            "range_increment": "100 ft.",
+            "weight_medium": "3 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Arrows (20)",
+            "cost": "1 gp",
+            "damage_small": "—",
+            "damage_medium": "—",
+            "critical": "—",
+            "range_increment": "—",
+            "weight_medium": "3 lb.",
+            "damage_type": "—"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Longbow, composite",
+            "cost": "100 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "×3",
+            "range_increment": "110 ft.",
+            "weight_medium": "3 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Arrows (20)",
+            "cost": "1 gp",
+            "damage_small": "—",
+            "damage_medium": "—",
+            "critical": "—",
+            "range_increment": "—",
+            "weight_medium": "3 lb.",
+            "damage_type": "—"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Shortbow",
+            "cost": "30 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×3",
+            "range_increment": "60 ft.",
+            "weight_medium": "2 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Arrows (20)",
+            "cost": "1 gp",
+            "damage_small": "—",
+            "damage_medium": "—",
+            "critical": "—",
+            "range_increment": "—",
+            "weight_medium": "3 lb.",
+            "damage_type": "—"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Shortbow, composite",
+            "cost": "75 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×3",
+            "range_increment": "70 ft.",
+            "weight_medium": "2 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Martial Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Arrows (20)",
+            "cost": "1 gp",
+            "damage_small": "—",
+            "damage_medium": "—",
+            "critical": "—",
+            "range_increment": "—",
+            "weight_medium": "3 lb.",
+            "damage_type": "—"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Kama",
+            "cost": "2 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "2 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Nunchaku",
+            "cost": "2 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "2 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Sai",
+            "cost": "1 gp",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "×2",
+            "range_increment": "10 ft.",
+            "weight_medium": "1 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Light Melee Weapons",
+            "weapon": "Siangham",
+            "cost": "3 gp",
+            "damage_small": "1d4",
+            "damage_medium": "1d6",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "1 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Sword, bastard",
+            "cost": "35 gp",
+            "damage_small": "1d8",
+            "damage_medium": "1d10",
+            "critical": "19-20/×2",
+            "range_increment": "—",
+            "weight_medium": "6 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Waraxe, dwarven",
+            "cost": "30 gp",
+            "damage_small": "1d8",
+            "damage_medium": "1d10",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "8 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "One-Handed Melee Weapons",
+            "weapon": "Whip",
+            "cost": "1 gp",
+            "damage_small": "1d2",
+            "damage_medium": "1d3",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "2 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Axe, orc double",
+            "cost": "60 gp",
+            "damage_small": "1d6/1d6",
+            "damage_medium": "1d8/1d8",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "15 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Chain, spiked",
+            "cost": "25 gp",
+            "damage_small": "1d6",
+            "damage_medium": "2d4",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "10 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Flail, dire",
+            "cost": "90 gp",
+            "damage_small": "1d6/1d6",
+            "damage_medium": "1d8/1d8",
+            "critical": "×2",
+            "range_increment": "—",
+            "weight_medium": "10 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Hammer, gnome hooked",
+            "cost": "20 gp",
+            "damage_small": "1d6/1d4",
+            "damage_medium": "1d8/1d6",
+            "critical": "×3/×4",
+            "range_increment": "—",
+            "weight_medium": "6 lb.",
+            "damage_type": "Bludgeoning/Piercing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Sword, two-bladed",
+            "cost": "100 gp",
+            "damage_small": "1d6/1d6",
+            "damage_medium": "1d8/1d8",
+            "critical": "19-20/×2",
+            "range_increment": "—",
+            "weight_medium": "10 lb.",
+            "damage_type": "Slashing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Two-Handed Melee Weapons",
+            "weapon": "Urgrosh, dwarven",
+            "cost": "50 gp",
+            "damage_small": "1d6/1d4",
+            "damage_medium": "1d8/1d6",
+            "critical": "×3",
+            "range_increment": "—",
+            "weight_medium": "12 lb.",
+            "damage_type": "Slashing or piercing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Bolas",
+            "cost": "5 gp",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "×2",
+            "range_increment": "10 ft.",
+            "weight_medium": "2 lb.",
+            "damage_type": "Bludgeoning"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Crossbow, hand",
+            "cost": "100 gp",
+            "damage_small": "1d3",
+            "damage_medium": "1d4",
+            "critical": "19-20/×2",
+            "range_increment": "30 ft.",
+            "weight_medium": "2 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Bolts (10)",
+            "cost": "1 gp",
+            "damage_small": "—",
+            "damage_medium": "—",
+            "critical": "—",
+            "range_increment": "—",
+            "weight_medium": "1 lb.",
+            "damage_type": "—"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Crossbow, repeating heavy",
+            "cost": "400 gp",
+            "damage_small": "1d8",
+            "damage_medium": "1d10",
+            "critical": "19-20/×2",
+            "range_increment": "120 ft.",
+            "weight_medium": "12 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Bolts (5)",
+            "cost": "1 gp",
+            "damage_small": "—",
+            "damage_medium": "—",
+            "critical": "—",
+            "range_increment": "—",
+            "weight_medium": "1 lb.",
+            "damage_type": "—"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Crossbow, repeating light",
+            "cost": "250 gp",
+            "damage_small": "1d6",
+            "damage_medium": "1d8",
+            "critical": "19-20/×2",
+            "range_increment": "80 ft.",
+            "weight_medium": "6 lb.",
+            "damage_type": "Piercing"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Bolts (5)",
+            "cost": "1 gp",
+            "damage_small": "—",
+            "damage_medium": "—",
+            "critical": "—",
+            "range_increment": "—",
+            "weight_medium": "1 lb.",
+            "damage_type": "—"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Net",
+            "cost": "20 gp",
+            "damage_small": "—",
+            "damage_medium": "—",
+            "critical": "—",
+            "range_increment": "10 ft.",
+            "weight_medium": "6 lb.",
+            "damage_type": "—"
+          },
+          {
+            "proficiency_group": "Exotic Weapons",
+            "weapon_group": "Ranged Weapons",
+            "weapon": "Shuriken (5)",
+            "cost": "1 gp",
+            "damage_small": "1",
+            "damage_medium": "1d2",
+            "critical": "×2",
+            "range_increment": "10 ft.",
+            "weight_medium": "½ lb.",
+            "damage_type": "Piercing"
+          }
+        ]
+      }
+    }
+  }
+}
